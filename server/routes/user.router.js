@@ -12,6 +12,26 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// This route *should* get all the registerd users  
+router.get('/log_in', (req, res) => {
+  if (req.isAuthenticated() && req.isAuthenticated()) {
+      console.log('/api/user/log_in GET route');
+      console.log('is authenticated?', req.isAuthenticated());
+      console.log('user', req.user);
+      let queryText = `SELECT * FROM "user" WHERE "id" = $1`;
+      pool.query(queryText, [req.user.id]).then((result) => {
+          res.send(result.rows);
+      }).catch((error) => {
+          console.log(error);
+          res.sendStatus(500);
+      });
+  }else {
+      //not logged in! GET OUT
+      res.sendStatus(403)
+  }
+
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
