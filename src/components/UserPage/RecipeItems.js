@@ -13,21 +13,20 @@ import Grid from '@material-ui/core/Grid';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
 
 
 
 // defines the cards theme and styles
 const styles = theme => ({
     card: {
-      backgroundColor: "RGBA(59,255,0,0.68)"
+      maxWidth: 400,
     },
     media: {
       height: 0,
       paddingTop: "67.25%" // 16:9,
     },
-    actions: {
-      display: "flex"
-    },
+    
     
      expand: {
        transform: "rotate(0deg)",
@@ -42,9 +41,7 @@ const styles = theme => ({
     avatar: {
       backgroundColor: "#33ab9f"
     },
-    typography: {
-      useNextVariants: true
-    }
+    
   });
   
 
@@ -52,7 +49,7 @@ const styles = theme => ({
 class RecipeItems extends Component {
     state = {
         expanded: false,
-        toggle: false
+        heartToggle: false
       };
 
 
@@ -102,20 +99,19 @@ class RecipeItems extends Component {
                     />
                     <div className="card-image">
                       <CardMedia
-                        style={{ height: "60px" }}
                         className={classes.media}
                         image={this.props.items.image_url}
-                        title={this.props.items.recipe_title}
+                        title="image dish name"
                       />
                     </div>
                     <CardContent
-                      style={{ marginTop: "3px", marginBottom: "3px", height: "90px" }}
+                      style={{ marginTop: "3px", marginBottom: "3px" }}
                     >
                       <Typography component="p">
                         {this.props.items.category}
                       </Typography>
                     </CardContent>
-                    <CardActions className={classes.actions} disableActionSpacing>
+                    <CardActions disableSpacing>
                       <IconButton
                         aria-label="Add to favorites"
                         onClick={this.toggleHeart}
@@ -135,19 +131,20 @@ class RecipeItems extends Component {
                                       <ExpandMoreIcon />
                                   </IconButton> 
                     </CardActions>
-                    {/* 
-                                  // for potential future use
+                     
+                                  
                                   <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                                   <CardContent>
-                                      <Typography paragraph>TBD</Typography>
+                                      <Typography paragraph>Ingredients:</Typography>
                                       <Typography paragraph>
-                      
+                                      {this.props.items.ingredients}
                                               </Typography>
+                                              <Typography paragraph>Preparation Instructions:</Typography>
                                       <Typography paragraph>
-                          
+                                      {this.props.items.description}
                                               </Typography>
                                   </CardContent>
-                              </Collapse> */}
+                              </Collapse> 
                   </Card>
                 </Grid>
               );
