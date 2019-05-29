@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import RecipeList from './RecipeList';
 
 
-
-
-
 class UserPage extends Component {
   render() {
     

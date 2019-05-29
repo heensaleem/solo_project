@@ -8,7 +8,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/ GET route');
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    let queryText = `SELECT * FROM "recipe"`;
+    let queryText = `SELECT * FROM "recipe";`;
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((error) => {

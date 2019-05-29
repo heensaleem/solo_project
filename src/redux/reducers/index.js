@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   recipeReducer, //will have an array of the recipe with all items
+  
 });
 
 export default rootReducer;
