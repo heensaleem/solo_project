@@ -16,60 +16,54 @@ import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 
 
-
 // defines the cards theme and styles
 const styles = theme => ({
-    card: {
-      maxWidth: 400,
-    },
-    media: {
-      height: 0,
-      paddingTop: "67.25%" // 16:9,
-    },
-    
-    
-     expand: {
-       transform: "rotate(0deg)",
-       marginLeft: "auto",
-       transition: theme.transitions.create("transform", {
-         duration: theme.transitions.duration.shortest
-       })
-     },
-     expandOpen: {
-       transform: "rotate(0deg)"
-     },
-    avatar: {
-      backgroundColor: "#33ab9f"
-    },
-    
-  });
-  
+  card: {
+    maxWidth: 400,
+  },
+  media: {
+    height: 0,
+    paddingTop: "67.25%" // 16:9,
+  },
+
+
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    })
+  },
+  expandOpen: {
+    transform: "rotate(0deg)"
+  },
+  avatar: {
+    backgroundColor: "#33ab9f"
+  },
+
+});
 
 
 class RecipeItems extends Component {
-    state = {
-        expanded: false,
+  state = {
+    expanded: false,
+    heartToggle: false
+  };
+
+
+  toggleHeart = () => {
+    if (!this.state.heartToggle) {
+      this.setState({
+        heartToggle: true
+      });
+    } else {
+      this.setState({
         heartToggle: false
-      };
+      });
+    }
+  };
 
-
-      toggleHeart = () => {
-        if (!this.state.heartToggle) {
-          this.setState({
-            heartToggle: true
-          });
-        } else {
-          this.setState({
-            heartToggle: false
-          });
-        }
-      };
-
-      handleExpandClick = () => {
-             this.setState(state => ({ expanded: !state.expanded }));
-         };
-
-      // outputs version of heart icon to DOM based on current state of 'heartToggle'
+  // outputs version of heart icon to DOM based on current state of 'heartToggle'
   displayHeart = () => {
     if (this.state.heartToggle) {
       return <FavoriteIcon style={{ color: "#d50000" }} />;
@@ -77,81 +71,86 @@ class RecipeItems extends Component {
       return <FavoriteIcon />;
     }
   };
-    render (){
-      const { classes } = this.props;
-            return (
-                <Grid item xs={12} sm={4}>
-                  <Card className={classes.card}>
-                    <CardHeader
-                      avatar={
-                        <Avatar aria-label="Recipe" className={classes.avatar}>
-            R
+
+  handleExpandClick = () => {
+    this.setState(state => ({ expanded: !state.expanded }));
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <Grid item xs={12} sm={4}>
+        <Card className={classes.card}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="Recipe" className={classes.avatar}>
+                R
           </Avatar>
-                      }
-                      
-                       action={
-                           <IconButton>
-                               <MoreVertIcon />
-                           </IconButton>
-                       }
-                      title={this.props.items.recipe_title}
-                      
-                    />
-                    <div className="card-image">
-                      <CardMedia
-                        className={classes.media}
-                        image={this.props.items.image_url}
-                        title="image dish name"
-                      />
-                    </div>
-                    <CardContent
-                      style={{ marginTop: "3px", marginBottom: "3px" }}
-                    >
-                      <Typography component="p">
-                        {this.props.items.category}
-                      </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                      <IconButton
-                        aria-label="Add to favorites"
-                        onClick={this.toggleHeart}
-                      >
-                        {this.displayHeart()}
-                      </IconButton>
-                       
-                                      
-                                      <IconButton
-                                      className={clsx(classes.expand, {
-                                          [classes.expandOpen]: this.state.expanded,
-                                      })}
-                                      onClick={this.handleExpandClick}
-                                      aria-expanded={this.state.expanded}
-                                      aria-label="Show more"
-                                  >
-                                      <ExpandMoreIcon />
-                                  </IconButton> 
-                    </CardActions>
-                     
-                                  
-                                  <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                                  <CardContent>
-                                      <Typography paragraph>Ingredients:</Typography>
-                                      <Typography paragraph>
-                                      {this.props.items.ingredients}
-                                              </Typography>
-                                              <Typography paragraph>Preparation Instructions:</Typography>
-                                      <Typography paragraph>
-                                      {this.props.items.description}
-                                              </Typography>
-                                  </CardContent>
-                              </Collapse> 
-                  </Card>
-                </Grid>
-              );
             }
-          }
+            action={
+              <IconButton>
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={this.props.items.recipe_title}
+
+          />
+          <div className="card-image">
+            <CardMedia
+              className={classes.media}
+              image={this.props.items.image_url}
+              title="image dish name"
+            />
+          </div>
+          <CardContent
+            style={{ marginTop: "3px", marginBottom: "3px" }}
+          >
+            <Typography component="p">
+              {this.props.items.category}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton
+              aria-label="Add to favorites"
+              onClick={this.toggleHeart}
+            >
+              {this.displayHeart()}
+            </IconButton>
+
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: this.state.expanded,
+              })}
+              onClick={this.handleExpandClick}
+              aria-expanded={this.state.expanded}
+              aria-label="Show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+            <Typography paragraph>Makes:{this.props.items.makes}</Typography>
+            <Typography paragraph>Serves:{this.props.items.serves}</Typography>
+            <Typography paragraph>Cook Time:{this.props.items.cooktime}</Typography>
+              <Typography paragraph>Ingredients:</Typography>
+              <Typography paragraph>
+                {this.props.items.ingredients}
+              </Typography>
+              <Typography paragraph>Preparation Instructions:</Typography>
+              <Typography paragraph>
+                {this.props.items.description}
+              </Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
+      </Grid>
+    );
+  }
+}
 
 
 
-  // this allows us to use <App /> in index.js
-  export default withStyles(styles)(RecipeItems);
+// this allows us to use <App /> in index.js
+export default withStyles(styles)(RecipeItems);
