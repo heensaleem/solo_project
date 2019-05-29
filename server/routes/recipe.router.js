@@ -25,11 +25,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('in post', req.user)
+    console.log('in post recipe', req.user)
     let queryText = 
-    `INSERT INTO "recipe" ("recipe_title", "category", "makes", "serves", "cooktime", "ingredients", "description") 
-     VALUES ($1, $2, $3, $4, $5, $6, $7)`; 
-     pool.query(queryText, [req.body.recipe_title, req.body.category, req.user.id] )
+    `INSERT INTO "recipe" ("user_id", "recipe_title", "category", "makes", "serves", "cooktime", "ingredients", "description") 
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`; 
+     pool.query(queryText, [req.user.id, req.body.recipe_title, req.body.category, req.body.makes, req.body.serves, req.body.cooktime, req.body.ingredients, req.body.description] )
      .then( () => {
          res.sendStatus(201); 
      }).catch (error => {
