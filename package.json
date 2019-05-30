@@ -6,6 +6,9 @@
   "dependencies": {
     "@material-ui/core": "^4.0.1",
     "@material-ui/icons": "^4.0.1",
+    "date-fns": "^2.0.0-alpha.27",
+    "material-ui-pickers": "^2.2.4",
+    "react-material-ui-form-validator": "^2.0.7",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "cookie-session": "^2.0.0-beta.3",

@@ -3,7 +3,7 @@ const recipeReducer = (state = [], action) => {
     case 'SET_RECIPES':
       return action.payload;
     case 'ADD_RECIPES':
-        return [...state, action.payload]
+        return action.payload;
     default:
       return state;
   }
