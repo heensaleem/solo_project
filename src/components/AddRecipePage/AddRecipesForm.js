@@ -76,9 +76,12 @@ class AddRecipesForm extends Component {
         return (
             <>
              {/* <pre>{JSON.stringify(this.props.reduxState.recipeReducer)}</pre>  */}
-        <Typography>
-          <h2>Add New Project</h2>
+             <div>
+             <Typography>
+          <h2>Add New Recipe</h2>
         </Typography>
+             </div>
+        
         <ValidatorForm
           ref="form"
           onSubmit={this.handleSubmit}

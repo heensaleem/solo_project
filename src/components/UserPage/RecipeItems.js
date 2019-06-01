@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -51,17 +52,19 @@ class RecipeItems extends Component {
   };
 
 
-  toggleHeart = (favRecipe) => {
+  toggleHeart = (favRecipeId) => {
+    
     if (!this.state.heartToggle) {
       this.setState({
         heartToggle: true
       });
+      this.props.dispatch({ type: 'POST_FAV_RECIPE', payload: {recipe_id: favRecipeId} })
     } else {
       this.setState({
         heartToggle: false
       });
     }
-    this.props.dispatch({ type: 'POST_FAV_RECIPE', payload: favRecipe })
+    
   };
 
   // outputs version of heart icon to DOM based on current state of 'heartToggle'
@@ -120,7 +123,7 @@ class RecipeItems extends Component {
           <CardActions disableSpacing>
             <IconButton
               aria-label="Add to favorites"
-              onClick={this.toggleHeart(this.props.items)}
+              onClick={() =>this.toggleHeart(this.props.items.id)}
             >
               {this.displayHeart()}
             </IconButton>
@@ -159,7 +162,10 @@ class RecipeItems extends Component {
   }
 }
 
-
+const mapStateToProps = state => ({
+  //user: state.user,
+  recipeItems: state.recipeReducer,
+});
 
 // this allows us to use <App /> in index.js
-export default withStyles(styles)(RecipeItems);
+export default withStyles(styles)(connect(mapStateToProps)(RecipeItems));

@@ -33,7 +33,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
      .then( () => {
          res.sendStatus(201); 
      }).catch (error => {
-         console.log('error in post', error)
+         console.log('error in post recipe router', error)
          res.sendStatus(500)
      })
          

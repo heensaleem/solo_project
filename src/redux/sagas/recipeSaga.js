@@ -36,7 +36,7 @@ function* postfavrecipeSaga(action) {
             withCredentials: true,
         };
         yield axios.post('/api/favourite', action.payload, config)
-        yield put({ type: 'SET_FAV_RECIPE', payload: favouriteResponse.data })
+        yield put({ type: 'SET_FAV_RECIPE'})
     } catch (err) {
         console.log('error in post fav recipe',err);
     }
