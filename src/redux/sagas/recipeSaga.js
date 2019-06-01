@@ -36,17 +36,33 @@ function* postfavrecipeSaga(action) {
             withCredentials: true,
         };
         yield axios.post('/api/favourite', action.payload, config)
-        yield put({ type: 'SET_FAV_RECIPE'})
+        yield put({ type: 'GET_FAV_RECIPES'})
     } catch (err) {
         console.log('error in post fav recipe',err);
     }
 }
 
+function* fetchFavRecipesaga() {
+    try {
+        const config = {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+        };
+        const response = yield axios.get('api/favourite', config);
+
+        yield put({ type: 'SET_FAV_RECIPES', payload: response.data });
+    } catch (error) {
+        console.log('user items get recipe request failed', error);
+    }
+
+}
+
+
 function* recipeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipeSaga);
     yield takeLatest('ADD_RECIPES', postRecipeSaga);
     yield takeLatest('POST_FAV_RECIPE', postfavrecipeSaga);
-    
+    yield takeLatest('GET_FAV_RECIPES', fetchFavRecipesaga);
 }
 
 

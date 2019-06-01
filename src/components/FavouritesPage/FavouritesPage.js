@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import {connect} from 'react-redux';
+import FavouritesRecipes from './FavouritesRecipes';
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -8,9 +9,12 @@ import React, { Component } from "react";
 class favouritesPage extends Component {
  render () {
    return (
-     <p>Favourite Page</p>
+     <div>
+       <FavouritesRecipes />
+     </div>
+     
    )
  }
 };
 
-export default favouritesPage;
+export default connect() (favouritesPage);

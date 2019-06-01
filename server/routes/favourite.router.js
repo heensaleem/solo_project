@@ -4,7 +4,18 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-
+// return all favorite recipes by the user
+router.get('/',rejectUnauthenticated, (req, res) => {
+    const queryText = `SELECT "recipe".category, "recipe".cooktime, "recipe".description, "recipe".image_url, recipe.ingredients, recipe.makes, recipe.preparation, recipe.recipe_title, recipe.serves FROM "recipe"
+    JOIN "favourites" ON "favourites".recipe_id = "recipe".id 
+    WHERE "recipe".user_id = $1`;
+    pool.query(queryText, [req.user.id])
+    .then(result => {res.send(result.rows)})
+    .catch(error => {
+      console.log('Error in Favorite GET router', error);
+      res.sendStatus(500);
+    })
+  });
 
 /**
  * POST route template
