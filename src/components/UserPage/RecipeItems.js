@@ -51,7 +51,7 @@ class RecipeItems extends Component {
   };
 
 
-  toggleHeart = () => {
+  toggleHeart = (favRecipe) => {
     if (!this.state.heartToggle) {
       this.setState({
         heartToggle: true
@@ -61,6 +61,7 @@ class RecipeItems extends Component {
         heartToggle: false
       });
     }
+    this.props.dispatch({ type: 'POST_FAV_RECIPE', payload: favRecipe })
   };
 
   // outputs version of heart icon to DOM based on current state of 'heartToggle'
@@ -109,10 +110,17 @@ class RecipeItems extends Component {
               {this.props.items.category}
             </Typography>
           </CardContent>
+          <CardContent
+            style={{ marginTop: "3px", marginBottom: "3px", height: "90px" }}
+          >
+            <Typography component="p">
+              {this.props.items.description}
+            </Typography>
+          </CardContent>
           <CardActions disableSpacing>
             <IconButton
               aria-label="Add to favorites"
-              onClick={this.toggleHeart}
+              onClick={this.toggleHeart(this.props.items)}
             >
               {this.displayHeart()}
             </IconButton>
@@ -131,6 +139,7 @@ class RecipeItems extends Component {
 
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
+
             <Typography paragraph>Makes:{this.props.items.makes}</Typography>
             <Typography paragraph>Serves:{this.props.items.serves}</Typography>
             <Typography paragraph>Cook Time:{this.props.items.cooktime}</Typography>
@@ -140,7 +149,7 @@ class RecipeItems extends Component {
               </Typography>
               <Typography paragraph>Preparation Instructions:</Typography>
               <Typography paragraph>
-                {this.props.items.description}
+                {this.props.items.preparation}
               </Typography>
             </CardContent>
           </Collapse>

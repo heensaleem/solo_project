@@ -18,6 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import AddRecipesPage from '../AddRecipePage/AddRecipesPage';
 
 import './App.css';
+import ReviewRecipe from '../AddRecipePage/ReviewRecipe';
 
 class App extends Component {
   componentDidMount () {
@@ -52,8 +53,13 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
+              path="/addrecipe"
               component={AddRecipesPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/review"
+              component={ReviewRecipe}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

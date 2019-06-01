@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 // Material UI imports
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-//import Snackbar from "@material-ui/core/Snackbar";
 import Button from "@material-ui/core/Button";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import ErrorIcon from "@material-ui/icons/Error";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import TextField from '@material-ui/core/TextField';
 
@@ -47,51 +45,37 @@ class AddRecipesForm extends Component {
    
    // handles on inputs on form and sets state
   handleChange = property => event => {
-    this.setState({
-      ...this.state,
-      [property]: event.target.value
-    });
+    this.props.dispatch({ type: "SEND_RECIPES", payload: event.target.value, name: property })
+    //  this.setState({
+    //    ...this.state,
+    //    [property]: event.target.value
+    //  });
   };
 
     // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form
   handleSubmit = () => {
-    this.props.dispatch({ type: "ADD_RECIPES", payload: this.state });
-    this.setState({
-        recipe_title: '',
-        category: '',
-        makes: '',
-        serves: '',
-        cooktime: '',
-        image_url: '',
-        ingredients: '',
-        description: ''
-    });
+    this.props.dispatch({ type: "STORE_RECIPES", payload: this.props.recipeItems });
+  //   this.setState({
+  //     recipe_title: '',
+  //     category: '',
+  //     makes: '',
+  //     serves: '',
+  //     cooktime: '',
+  //     image_url: '',
+  //     ingredients: '',
+  //     description: ''
+  // });
+    this.props.history.push('/review');
+   
   };
     
-  // determines which message will display on snackbar depending if post to database was successful
-  alertMessage = () => {
-    const { classes } = this.props;
-    if (this.props.confirmPost.status) {
-      return (
-        <span id="message-id" style={{ display: "flex", alignItems: "center" }}>
-          <CheckCircleIcon className={classes.icon} />
-          Recipe Successfully Added!
-        </span>
-      );
-    } else {
-      return (
-        <span id="message-id" style={{ display: "flex", alignItems: "center" }}>
-          <ErrorIcon className={classes.icon} />
-          Recipe add was unsuccessful!
-        </span>
-      );
-    }
-  };
+  
 
     render() {
         //const { classes } = this.props;
         return (
             <>
+             {/* <pre>{JSON.stringify(this.props.reduxState.recipeReducer)}</pre>  */}
         <Typography>
           <h2>Add New Project</h2>
         </Typography>
@@ -100,8 +84,8 @@ class AddRecipesForm extends Component {
           onSubmit={this.handleSubmit}
           onError={errors => console.log(errors)}
         >
-          
-            <Grid item xs={12} >
+          <Grid container spacing={2}>
+            <Grid item xs={3}  >
               <TextValidator
                 id="name"
                 label="* Title"
@@ -111,13 +95,13 @@ class AddRecipesForm extends Component {
                 name="name"
                 type="text"
                 margin="normal"
-                value={this.state.recipe_title}
+                value={this.props.recipeItems.recipe_title}
                 validators={["required"]}
                 errorMessages={["this field is required"]}
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} >
+            <Grid item xs={3} >
               <TextValidator
                 id="category"
                 label="* Category"
@@ -127,96 +111,122 @@ class AddRecipesForm extends Component {
                 name="category"
                 type="text"
                 margin="normal"
-                value={this.state.category}
+                value={this.props.recipeItems.category}
+                validators={["required"]}
+                errorMessages={["this field is required"]}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={6} >
+            <TextValidator
+        id="outlined-multiline-flexible"
+        label="Description"
+        multiline
+        fullWidth
+        rowsMax="3"
+        value={this.props.recipeItems.description}
+        onChange={this.handleChange('description')}
+        //className={classes.textField}
+        margin="normal"
+        validators={["required"]}
+                errorMessages={["this field is required"]}
+                variant="outlined"
+      />
+          </Grid>  
+            <Grid item xs={6} >
+              <TextValidator
+                id="image_url"
+                label="* Image"
+                fullWidth
+                //className={classNames(classes.textField)}
+                onChange={this.handleChange("image_url")}
+                name="imageUrl"
+                type="url"
+                margin="normal"
+                // helperText="*required"
+                value={this.props.recipeItems.image_url}
                 validators={["required"]}
                 errorMessages={["this field is required"]}
                 variant="outlined"
               />
             </Grid>
             
-            <Grid item xs={12} >
-            <TextField
-        id="outlined-multiline-flexible"
-        label="image_url"
-        multiline
-        rowsMax="1"
-        value={this.state.image_url}
-        onChange={this.handleChange('image_url')}
-        //className={classes.textField}
-        margin="normal"
-        variant="outlined"
-      />
-        </Grid>
-            
-            <Grid item xs={12} >
+            <Grid item xs={3} >
               <TextValidator
                 id="makes"
                 label="Makes"
-                multiline
                 fullWidth
-                rowsMax="4"
                 type="text"
-                value={this.state.makes}
+                value={this.props.recipeItems.makes}
                 onChange={this.handleChange("makes")}
                 //className={classes.textField}
                 margin="normal"
+                validators={["required"]}
+                errorMessages={["this field is required"]}
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} >
+            <Grid item xs={3} >
               <TextValidator
                 id="serves"
                 label="serves"
-                multiline
                 fullWidth
-                rowsMax="4"
                 type="text"
-                value={this.state.serves}
+                value={this.props.recipeItems.serves}
                 onChange={this.handleChange("serves")}
                 //className={classes.textField}
                 margin="normal"
+                validators={["required"]}
+                errorMessages={["this field is required"]}
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} >
+            <Grid item xs={3} >
               <TextValidator
                 id="cooktime"
                 label="* Cook Time"
-                multiline
                 fullWidth
                 rowsMax="4"
                 type="text"
-                value={this.state.cooktime}
+                value={this.props.recipeItems.cooktime}
                 onChange={this.handleChange("cooktime")}
                 //className={classes.textField}
                 margin="normal"
+                validators={["required"]}
+                errorMessages={["this field is required"]}
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} >
-            <TextField
+            <Grid item xs={6} >
+            <TextValidator
         id="outlined-multiline-flexible"
         label="Ingredients"
         multiline
-        rowsMax="5"
-        value={this.state.ingredients}
+        fullWidth
+        rowsMax="8"
+        value={this.props.recipeItems.ingredients}
         onChange={this.handleChange('ingredients')}
         //className={classes.textField}
         margin="normal"
-        variant="outlined"
+        validators={["required"]}
+                errorMessages={["this field is required"]}
+                variant="outlined"
       />
         </Grid>
-        <Grid item xs={12} >
-            <TextField
+        <Grid item xs={6} >
+            <TextValidator
         id="outlined-multiline-flexible"
-        label="Description"
+        label="* Preparation Instructions"
         multiline
-        rowsMax="8"
-        value={this.state.description}
-        onChange={this.handleChange('description')}
+        fullWidth
+        rowsMax="10"
+        value={this.props.recipeItems.preparation}
+        onChange={this.handleChange('preparation')}
         //className={classes.textField}
         margin="normal"
-        variant="outlined"
+        validators={["required"]}
+                errorMessages={["this field is required"]}
+                variant="outlined"
       />
         </Grid>    
             <Grid item xs={8} >
@@ -227,18 +237,19 @@ class AddRecipesForm extends Component {
                 size="large"
                 //className={classes.button}
               >
-                Submit
+                NEXT
               </Button>
             </Grid>
-         
+            </Grid>
         </ValidatorForm>
         
       </>
     );
   }
 }
-const mapReduxStateToProps = reduxState => {
-  return reduxState;
-};
+const mapStateToProps = state => ({
+  //user: state.user,
+  recipeItems: state.addRecipeReducer,
+});
 
-export default withStyles(styles)(connect(mapReduxStateToProps)(AddRecipesForm));
+export default withRouter(withStyles(styles)(connect(mapStateToProps)(AddRecipesForm)));
