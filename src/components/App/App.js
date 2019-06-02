@@ -16,11 +16,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import FavouritesPage from '../FavouritesPage/FavouritesPage';
 import UserPage from '../UserPage/UserPage';
 import AddRecipesPage from '../AddRecipePage/AddRecipesPage';
-
-import './App.css';
 import ReviewRecipe from '../AddRecipePage/ReviewRecipe';
 import favouritesPage from '../FavouritesPage/FavouritesPage';
 import editRecipesPage from '../FavouritesPage/EditRecipes';
+
+import './App.css';
+
 
 class App extends Component {
   componentDidMount () {

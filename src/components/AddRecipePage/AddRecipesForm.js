@@ -81,7 +81,7 @@ class AddRecipesForm extends Component {
           <h2>Add New Recipe</h2>
         </Typography>
              </div>
-        
+        <div>
         <ValidatorForm
           ref="form"
           onSubmit={this.handleSubmit}
@@ -245,7 +245,7 @@ class AddRecipesForm extends Component {
             </Grid>
             </Grid>
         </ValidatorForm>
-        
+        </div>
       </>
     );
   }
