@@ -13,7 +13,6 @@ function* fetchRecipeSaga() {
     } catch (error) {
         console.log('user items get recipe request failed', error);
     }
-
 }
 
 function* postRecipeSaga(action) {
@@ -54,15 +53,25 @@ function* fetchFavRecipesaga() {
     } catch (error) {
         console.log('user items get recipe request failed', error);
     }
-
 }
 
+function* removeFavRecipeSaga(action) {
+    try { 
+        console.log('delete from sagas',action.payload)
+        yield axios.delete(`/api/favourite/${action.payload.recipe_id}`)
+        yield put({type: 'GET_FAV_RECIPES'})
+    }
+    catch(error) {
+    console.log(error)
+  }
+}
 
 function* recipeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipeSaga);
     yield takeLatest('ADD_RECIPES', postRecipeSaga);
     yield takeLatest('POST_FAV_RECIPE', postfavrecipeSaga);
     yield takeLatest('GET_FAV_RECIPES', fetchFavRecipesaga);
+    yield takeLatest('REMOVE_FAV_RECIPE', removeFavRecipeSaga);
 }
 
 

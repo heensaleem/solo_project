@@ -17,6 +17,5 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     recipeSaga(),
-
   ]);
 }

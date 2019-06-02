@@ -56,7 +56,7 @@ class favRecipeItems extends Component {
           this.setState({
             removeItem: true
           });
-          this.props.dispatch({ type: 'REMOVE_FAV_RECIPE', payload: {id: favRecipeId} })
+          this.props.dispatch({ type: 'REMOVE_FAV_RECIPE', payload: {recipe_id: favRecipeId} })
         } else {
           this.setState({
             removeItem: false
