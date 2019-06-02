@@ -16,6 +16,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Icon from '@material-ui/core/Icon';
+import Fab from '@material-ui/core/Fab';
+import { withRouter } from "react-router-dom";
 
 
 const styles = theme => ({
@@ -26,7 +29,9 @@ const styles = theme => ({
       height: 0,
       paddingTop: "67.25%" // 16:9,
     },
-  
+    fab: {
+      margin: theme.spacing(1),
+    },  
   
     expand: {
       transform: "rotate(0deg)",
@@ -47,11 +52,11 @@ class favRecipeItems extends Component {
     state = {
         expanded: false,
         heartToggle: true,
-        removeItem: false
+        removeItem: false,
+        updateFavourites: false,
       };
     
       removeRecipe = (favRecipeId) => {
-    
         if (!this.state.removeItem) {
           this.setState({
             removeItem: true
@@ -64,6 +69,21 @@ class favRecipeItems extends Component {
         }
         
       }; 
+
+      editFavourites = (favRecipeId) => {
+        console.log('clicked on edit button');
+        if (!this.state.updateFavourites) {
+          this.setState({
+            updateFavourites: true
+          });
+          this.props.dispatch({ type: 'EDIT_FAV_RECIPE', payload: {recipe_id: favRecipeId} })
+          this.props.history.push('/edit');
+        } else {
+          this.setState({
+            updateFavourites: false
+          });
+        }
+      }
     
       // outputs version of heart icon to DOM based on current state of 'heartToggle'
       displayHeart = () => {
@@ -80,6 +100,18 @@ class favRecipeItems extends Component {
           } else {
             return <DeleteIcon />;
           }
+      }
+
+      editIcon = () => {
+        if (this.state.updateFavourites) {
+          return <Fab color="secondary" aria-label="Edit" >
+          <Icon>edit_icon</Icon>
+        </Fab>
+        } else {
+          return <Fab color="default" aria-label="Edit" >
+          <Icon>edit_icon</Icon>
+        </Fab>;
+        }
       }
     
       handleExpandClick = () => {
@@ -140,6 +172,12 @@ class favRecipeItems extends Component {
                   {this.removeIcon()}
                 </IconButton>
                 <IconButton
+                  aria-label="Edit favourites"
+                  onClick={() =>this.editFavourites(this.props.items.id)}
+                >
+                  {this.editIcon()}
+                </IconButton>
+                <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: this.state.expanded,
                   })}
@@ -180,5 +218,5 @@ const mapStateToProps = state => ({
   });
   
   // this allows us to use <App /> in index.js
-  export default withStyles(styles)(connect(mapStateToProps)(favRecipeItems));
+  export default withRouter(withStyles(styles)(connect(mapStateToProps)(favRecipeItems)));
   

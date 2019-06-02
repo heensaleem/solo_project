@@ -20,6 +20,7 @@ import AddRecipesPage from '../AddRecipePage/AddRecipesPage';
 import './App.css';
 import ReviewRecipe from '../AddRecipePage/ReviewRecipe';
 import favouritesPage from '../FavouritesPage/FavouritesPage';
+import editRecipesPage from '../FavouritesPage/EditRecipes';
 
 class App extends Component {
   componentDidMount () {
@@ -66,6 +67,11 @@ class App extends Component {
               exact
               path="/favourites"
               component={favouritesPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/edit"
+              component={editRecipesPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

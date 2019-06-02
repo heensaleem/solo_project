@@ -2,6 +2,8 @@ const favRecipeReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_FAV_RECIPES':
         return action.payload;
+      case 'EDIT_FAV_RECIPES':
+        return action.payload;
       default:
         return state;
     }
