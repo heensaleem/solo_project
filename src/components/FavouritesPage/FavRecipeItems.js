@@ -16,22 +16,22 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';
-import Fab from '@material-ui/core/Fab';
+import {Edit}from '@material-ui/icons';
 import { withRouter } from "react-router-dom";
 
 
-const styles = theme => ({
+const styles = (theme) => {
+  return {
     card: {
-      maxWidth: 400,
+      maxWidth: 500,
     },
     media: {
       height: 0,
       paddingTop: "67.25%" // 16:9,
     },
-    fab: {
-      margin: theme.spacing(1),
-    },  
+    // fab: {
+    //   margin: theme.spacing(1),
+    // },  
   
     expand: {
       transform: "rotate(0deg)",
@@ -40,14 +40,12 @@ const styles = theme => ({
         duration: theme.transitions.duration.shortest
       })
     },
-    expandOpen: {
-      transform: "rotate(0deg)"
-    },
+    
     avatar: {
       backgroundColor: "#33ab9f"
-    },
-  
-  });
+    }
+  }
+  };
 class favRecipeItems extends Component {
     state = {
         expanded: false,
@@ -105,13 +103,9 @@ class favRecipeItems extends Component {
 
       editIcon = () => {
         if (this.state.updateFavourites) {
-          return <Fab color="secondary" aria-label="Edit" className={this.props.theme.fab} >
-          <Icon>edit_icon</Icon>
-        </Fab>
+          return <Edit style={{ color: "#d50000" }}/>
         } else {
-          return <Fab color="default" aria-label="Edit" >
-          <Icon>edit_icon</Icon>
-        </Fab>;
+          return <Edit />
         }
       }
     
@@ -122,25 +116,21 @@ class favRecipeItems extends Component {
       render() {
         const { classes } = this.props;
         return (
-          <Grid item xs={12} sm={4}>
-            <Card className={classes.card}>
+          <Grid item xs={12} sm={6}>
+            <Card className={this.props.classes.card}>
               <CardHeader
                 avatar={
-                  <Avatar aria-label="Recipe" className={classes.avatar}>
+                  <Avatar aria-label="Recipe" className={this.props.classes.avatar}>
                     R
               </Avatar>
                 }
-                action={
-                  <IconButton>
-                    <MoreVertIcon />
-                  </IconButton>
-                }
+                
                 title={this.props.items.recipe_title}
     
               />
               <div className="card-image">
                 <CardMedia
-                  className={classes.media}
+                  className={this.props.classes.media}
                   image={this.props.items.image_url}
                   title="image dish name"
                 />
@@ -179,7 +169,7 @@ class favRecipeItems extends Component {
                   {this.editIcon()}
                 </IconButton>
                 <IconButton
-                  className={clsx(classes.expand, {
+                  className={clsx(this.props.classes.expand, {
                     [classes.expandOpen]: this.state.expanded,
                   })}
                   onClick={this.handleExpandClick}
@@ -207,7 +197,7 @@ class favRecipeItems extends Component {
                 </CardContent>
               </Collapse>
             </Card>
-          </Grid>
+            </Grid>
         );
       }
     }

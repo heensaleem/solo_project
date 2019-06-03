@@ -5,7 +5,6 @@ import RecipeList from './RecipeList';
 
 class UserPage extends Component {
   render() {
-    
     return (
       <>
           <RecipeList />

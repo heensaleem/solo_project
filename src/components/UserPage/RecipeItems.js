@@ -91,11 +91,7 @@ class RecipeItems extends Component {
                 R
           </Avatar>
             }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
+            
             title={this.props.items.recipe_title}
 
           />
