@@ -17,13 +17,9 @@ router.get('/',rejectUnauthenticated, (req, res) => {
     })
   });
 
-/**
- * POST route template
- */
-/**
- * Add favourite recipes for the logged in user 
- */
 
+ // Add favourite recipes for the logged in user 
+ 
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('in post  fav recipe', req.user)
     let queryText = 
@@ -39,7 +35,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
          
  });
 
-
+//remove the recipe from the favourites
  router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.params.id: ' + req.params.id + ' req.user.id: ' + req.user.id);
   let queryText = `DELETE FROM "favourites" WHERE( "favourites"."recipe_id"=$1 AND "favourites".user_id=$2)`;

@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import TextField from '@material-ui/core/TextField';
+
 
 import { Typography } from "@material-ui/core";
 
@@ -68,7 +68,8 @@ class AddRecipesForm extends Component {
     this.props.history.push('/review');
    
   };
-    
+
+  
   
 
     render() {
@@ -245,6 +246,7 @@ class AddRecipesForm extends Component {
             </Grid>
             </Grid>
         </ValidatorForm>
+        
         </div>
       </>
     );

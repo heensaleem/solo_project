@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-
+//get all the recipes from the database for that specific user
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/ GET route');
     console.log('is authenticated?', req.isAuthenticated());
@@ -17,13 +17,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-/**
- * Add recipes for the logged in user 
- */
 
+//post the recipe to the database
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('in post recipe', req.user)
     let queryText = 

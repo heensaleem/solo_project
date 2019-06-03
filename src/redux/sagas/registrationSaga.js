@@ -22,8 +22,22 @@ function* registerUser(action) {
   }
 }
 
+function* getUserInfo(){
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+    const response = yield axios.get('api/user/log_in', config);
+    yield put({ type: 'SET_USER_INFO', payload: response.data });
+    } catch (error) {
+        console.log('user info get failed', error);
+    }
+}
+
 function* registrationSaga() {
   yield takeLatest('REGISTER', registerUser);
+  yield takeLatest('FETCH_USER_INFO', getUserInfo);
 }
 
 export default registrationSaga;

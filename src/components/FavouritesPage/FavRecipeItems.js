@@ -11,7 +11,6 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Grid from '@material-ui/core/Grid';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
@@ -116,7 +115,7 @@ class favRecipeItems extends Component {
       render() {
         const { classes } = this.props;
         return (
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4} >
             <Card className={this.props.classes.card}>
               <CardHeader
                 avatar={
