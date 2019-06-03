@@ -36,15 +36,16 @@ class editRecipes extends Component {
 
     
     state = {
-        recipe_title: (this.props.recipeItems.recipe_title) || '',
-        category: (this.props.recipeItems.category) || '',
-        description: (this.props.recipeItems.description) || '',
+        recipe_title: this.props.recipeItems.recipe_title|| '',
+        category: this.props.recipeItems.category || '',
+        description: this.props.recipeItems.description || '',
         makes: (this.props.recipeItems.makes) || '',
         serves: (this.props.recipeItems.serves) || '',
         cooktime: (this.props.recipeItems.cooktime) || '',
         image_url: (this.props.recipeItems.image_url) || '',
         ingredients: (this.props.recipeItems.ingredients) || '',
         preparation: (this.props.recipeItems.preparation) || '',
+        id:(this.props.recipeItems.id)
     };
 
     handleChange = (property) => event  => {
@@ -54,8 +55,8 @@ class editRecipes extends Component {
           });
      }
     handleSubmit = () => {
-        console.log('clicked on submit button', this.state , this.props.recipeItems.id )
-        this.props.dispatch({ type: "UPDATE_RECIPES", payload: this.state, id:this.props.recipeItems.id });
+        console.log('clicked on submit button', this.state )
+        this.props.dispatch({ type: "UPDATE_RECIPES", payload: this.state });
     }
 
     render (){

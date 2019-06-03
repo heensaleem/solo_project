@@ -1,7 +1,7 @@
-const editFavReducer = (state = [], action) => {
+const editFavReducer = (state = {}, action) => {
     switch (action.type) {
       case 'EDIT_FAV_RECIPES':
-        return action.payload;
+        return  action.payload ;
       default:
         return state;
     }
