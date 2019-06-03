@@ -66,12 +66,23 @@ function* removeFavRecipeSaga(action) {
   }
 }
 
+function* updateFavRecipeSaga(action) {
+    try {
+        console.log('update from sagas',action.payload)
+        yield axios.put(`/api/favourite/${action.payload.recipe_id}`, action.payload);
+        yield put({ type: 'GET_FAV_RECIPES' });
+    } catch (err) {
+        console.log('update saga error:', err);
+    }
+} //end updateFriend
+
 function* recipeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipeSaga);
     yield takeLatest('ADD_RECIPES', postRecipeSaga);
     yield takeLatest('POST_FAV_RECIPE', postfavrecipeSaga);
     yield takeLatest('GET_FAV_RECIPES', fetchFavRecipesaga);
     yield takeLatest('REMOVE_FAV_RECIPE', removeFavRecipeSaga);
+    yield takeLatest('UPDATE_RECIPES', updateFavRecipeSaga);
 }
 
 

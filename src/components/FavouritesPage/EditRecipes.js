@@ -37,7 +37,7 @@ class editRecipes extends Component {
     
     state = {
         recipe_title: (this.props.recipeItems.recipe_title) || '',
-        category: (this.props.recipeItems.recipe_title) || '',
+        category: (this.props.recipeItems.category) || '',
         description: (this.props.recipeItems.description) || '',
         makes: (this.props.recipeItems.makes) || '',
         serves: (this.props.recipeItems.serves) || '',
@@ -48,12 +48,14 @@ class editRecipes extends Component {
     };
 
     handleChange = (property) => event  => {
+        console.log('in handle change');
         this.setState({
             [property]: event.target.value,
           });
      }
     handleSubmit = () => {
-        this.props.dispatch({ type: "UPDATE_RECIPES", payload: this.state });
+        console.log('clicked on submit button', this.state , this.props.recipeItems.id )
+        this.props.dispatch({ type: "UPDATE_RECIPES", payload: this.state, id:this.props.recipeItems.id });
     }
 
     render (){
@@ -69,17 +71,17 @@ class editRecipes extends Component {
         <div>
         <ValidatorForm
           ref="form"
-          onSubmit={() =>this.handleSubmit}
+          onSubmit={this.handleSubmit}
           onError={errors => console.log(errors)}
         >
           <Grid container spacing={2}>
             <Grid item xs={3}  >
               <TextValidator
-                id="name"
+                id="recipe_title"
                 label="* Title"
                 fullWidth
                 //className={classNames(classes.textField)}
-                onChange={() =>this.handleChange("recipe_title")}
+                onChange={this.handleChange("recipe_title")}
                 type="text"
                 margin="normal"
                 value={this.state.recipe_title}
@@ -94,7 +96,7 @@ class editRecipes extends Component {
                 label="* Category"
                 fullWidth
                 //className={classNames(classes.textField)}
-                onChange={() =>this.handleChange("category")}
+                onChange={this.handleChange("category")}
                 name="category"
                 type="text"
                 margin="normal"
@@ -106,13 +108,13 @@ class editRecipes extends Component {
             </Grid>
             <Grid item xs={6} >
             <TextValidator
-        id="outlined-multiline-flexible"
+        id="description"
         label="Description"
         multiline
         fullWidth
         rowsMax="3"
         value={this.state.description}
-        onChange={() =>this.handleChange('description')}
+        onChange={this.handleChange('description')}
         //className={classes.textField}
         margin="normal"
         validators={["required"]}
@@ -126,7 +128,7 @@ class editRecipes extends Component {
                 label="* Image"
                 fullWidth
                 //className={classNames(classes.textField)}
-                onChange={() =>this.handleChange("image_url")}
+                onChange={this.handleChange("image_url")}
                 name="imageUrl"
                 type="url"
                 margin="normal"
@@ -145,7 +147,7 @@ class editRecipes extends Component {
                 fullWidth
                 type="text"
                 value={this.state.makes}
-                onChange={() =>this.handleChange("makes")}
+                onChange={this.handleChange("makes")}
                 //className={classes.textField}
                 margin="normal"
                 validators={["required"]}
@@ -160,7 +162,7 @@ class editRecipes extends Component {
                 fullWidth
                 type="text"
                 value={this.state.serves}
-                onChange={() =>this.handleChange("serves")}
+                onChange={this.handleChange("serves")}
                 //className={classes.textField}
                 margin="normal"
                 validators={["required"]}
@@ -176,7 +178,7 @@ class editRecipes extends Component {
                 rowsMax="4"
                 type="text"
                 value={this.state.cooktime}
-                onChange={() =>this.handleChange("cooktime")}
+                onChange={this.handleChange("cooktime")}
                 //className={classes.textField}
                 margin="normal"
                 validators={["required"]}
@@ -192,7 +194,7 @@ class editRecipes extends Component {
         fullWidth
         rowsMax="8"
         value={this.state.ingredients}
-        onChange={() =>this.handleChange('ingredients')}
+        onChange={this.handleChange('ingredients')}
         //className={classes.textField}
         margin="normal"
         validators={["required"]}
@@ -208,7 +210,7 @@ class editRecipes extends Component {
         fullWidth
         rowsMax="10"
         value={this.state.preparation}
-        onChange={() =>this.handleChange('preparation')}
+        onChange={this.handleChange('preparation')}
         //className={classes.textField}
         margin="normal"
         validators={["required"]}
@@ -224,7 +226,7 @@ class editRecipes extends Component {
                 size="large"
                 //className={classes.button}
               >
-                NEXT
+               SUBMIT
               </Button>
             </Grid>
             </Grid>
@@ -237,7 +239,7 @@ class editRecipes extends Component {
 
 const mapStateToProps = state => ({
     //user: state.user,
-    recipeItems: state.editFavReducer,
+    recipeItems: state.editFavReducer
   });
 
 export default (withStyles(styles)(connect(mapStateToProps)(editRecipes)));

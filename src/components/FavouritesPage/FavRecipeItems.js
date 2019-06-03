@@ -70,13 +70,14 @@ class favRecipeItems extends Component {
         
       }; 
 
-      editFavourites = (item) => {
-        console.log('clicked on edit button', item);
+      editFavourites = (items, id ) => {
+        console.log('clicked on edit button',item , id);
+
         if (!this.state.updateFavourites) {
           this.setState({
             updateFavourites: true
           });
-          this.props.dispatch({ type: 'EDIT_FAV_RECIPES', payload: item})
+          this.props.dispatch({ type: 'EDIT_FAV_RECIPES', payload: {id:id, item:items}})
           this.props.history.push('/edit');
         } else {
           this.setState({
@@ -173,7 +174,7 @@ class favRecipeItems extends Component {
                 </IconButton>
                 <IconButton
                   aria-label="Edit favourites"
-                  onClick={() =>this.editFavourites(this.props.items)}
+                  onClick={() =>this.editFavourites(this.props.items, this.props.items.id)}
                 >
                   {this.editIcon()}
                 </IconButton>

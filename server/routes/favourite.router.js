@@ -52,6 +52,28 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+// update given favorite with a id
+router.put('/:id', (req, res) => {
+    console.log('req.params.id: ' + req.params.id + ' req.user.id: ' + req.user.id);
+    
+    const sqlText = `
+    UPDATE favorites
+    SET "recipe_id" = $1;
+    WHERE user_id = $2;
+    `
+    pool.query(sqlText, [req.params.id, req.user.id] )
+      .then((result) => {
+        console.log('PUT route', result);
+        
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log('Error in PUT', err);
+        res.sendStatus(500);
+      });
+  
+    })
+
  
 
 module.exports = router;
