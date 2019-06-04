@@ -23,7 +23,9 @@ function* postRecipeSaga(action) {
         };
         yield axios.post('/api/recipe', action.payload, config)
         yield put({ type: 'FETCH_RECIPES' })
+        yield put({ type: "CONFIRM_POST", payload: true });
     } catch (err) {
+        yield put({ type: "CONFIRM_POST", payload: false });
         console.log('error in post recipe',err);
     }
 }

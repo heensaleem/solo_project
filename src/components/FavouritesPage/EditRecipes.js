@@ -57,6 +57,7 @@ class editRecipes extends Component {
     handleSubmit = () => {
         console.log('clicked on submit button', this.state )
         this.props.dispatch({ type: "UPDATE_RECIPES", payload: this.state });
+        this.props.history.push('/favourites');
     }
 
     render (){
@@ -243,4 +244,4 @@ const mapStateToProps = state => ({
     recipeItems: state.editFavReducer
   });
 
-export default (withStyles(styles)(connect(mapStateToProps)(editRecipes)));
+export default withRouter(withStyles(styles)(connect(mapStateToProps)(editRecipes)));

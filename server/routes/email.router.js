@@ -32,7 +32,7 @@ router.post('/send', (req, res) => {
     const mail = {
          from: name,
          to: 'heenakouser440@gmail.com',  //Change to email address that you want to receive messages on
-         subject: "this is a subject",
+         subject: "Hey, User",
         text: content
     }
 
