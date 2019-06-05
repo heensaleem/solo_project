@@ -117,7 +117,7 @@ class favRecipeItems extends Component {
               <CardHeader
                 avatar={
                   <Avatar aria-label="Recipe" className={this.props.classes.avatar}>
-                    R
+                    Z
               </Avatar>
                 }
                 
