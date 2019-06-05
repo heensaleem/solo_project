@@ -29,7 +29,7 @@ function* postRecipeSaga(action) {
         console.log('error in post recipe',err);
     }
 }
-
+//to post the fav recipe 
 function* postfavrecipeSaga(action) {
     try {
         const config = {

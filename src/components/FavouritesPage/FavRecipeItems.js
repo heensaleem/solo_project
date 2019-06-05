@@ -28,10 +28,7 @@ const styles = (theme) => {
       height: 0,
       paddingTop: "67.25%" // 16:9,
     },
-    // fab: {
-    //   margin: theme.spacing(1),
-    // },  
-  
+     
     expand: {
       transform: "rotate(0deg)",
       marginLeft: "auto",
@@ -52,7 +49,7 @@ class favRecipeItems extends Component {
         removeItem: false,
         updateFavourites: false,
       };
-    
+    //if remove button is clicked, dispatches an action to remove that specific recipe
       removeRecipe = (favRecipeId) => {
         if (!this.state.removeItem) {
           this.setState({
@@ -66,7 +63,7 @@ class favRecipeItems extends Component {
         }
         
       }; 
-
+// if user clicks on edit button set the state to true and dispatch the info to the reducer
       editFavourites = (items) => {
         console.log('clicked on edit button',items );
 
@@ -83,7 +80,7 @@ class favRecipeItems extends Component {
         }
       }
     
-      // outputs version of heart icon to DOM based on current state of 'heartToggle'
+     //if the state for the hearttoggle is set to true then change the color of the icon 
       displayHeart = () => {
         if (this.state.heartToggle) {
             return <FavoriteIcon style={{ color: "#d50000" }} />;
@@ -91,7 +88,7 @@ class favRecipeItems extends Component {
             return <FavoriteIcon />;
           }
       };
-
+//if the state for the remove item is set to true then change the color 
       removeIcon = () => {
         if (this.state.removeItem) {
             return <DeleteIcon  style={{ color: "#d50000" }} />;
@@ -107,7 +104,7 @@ class favRecipeItems extends Component {
           return <Edit />
         }
       }
-    
+    //expands on click and set the state
       handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
       };

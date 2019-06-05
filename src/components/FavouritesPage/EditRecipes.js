@@ -34,7 +34,7 @@ const styles = theme => ({
 
 class editRecipes extends Component {
 
-    
+    //state to take the new added recipe from the reducer
     state = {
         recipe_title: this.props.recipeItems.recipe_title|| '',
         category: this.props.recipeItems.category || '',
@@ -47,13 +47,14 @@ class editRecipes extends Component {
         preparation: (this.props.recipeItems.preparation) || '',
         id:(this.props.recipeItems.id)
     };
-
+//sets the name and value of the item in the recipe
     handleChange = (property) => event  => {
         console.log('in handle change');
         this.setState({
             [property]: event.target.value,
           });
      }
+     //submit the recipe and updates in the database
     handleSubmit = () => {
         console.log('clicked on submit button', this.state )
         this.props.dispatch({ type: "UPDATE_RECIPES", payload: this.state });
@@ -66,9 +67,9 @@ class editRecipes extends Component {
             <>
               <pre>{JSON.stringify(this.props.recipeItems)}</pre> 
              <div>
-             <Typography>
-          <h2>Edit Recipe</h2>
-        </Typography>
+             <Typography variant="h4" gutterBottom>
+         EDIT RECIPE
+      </Typography>
              </div>
         <div>
         <ValidatorForm

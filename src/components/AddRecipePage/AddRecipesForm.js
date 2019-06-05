@@ -27,12 +27,6 @@ const styles = theme => ({
   }
 });
 
-const categories = [
-
-]
-
-
-
 class AddRecipesForm extends Component {
   state = {
     recipe_title: '',
@@ -70,9 +64,6 @@ class AddRecipesForm extends Component {
     this.props.history.push('/review');
 
   };
-
-
-
 
   render() {
     //const { classes } = this.props;

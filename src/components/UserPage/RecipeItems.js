@@ -51,23 +51,22 @@ class RecipeItems extends Component {
     heartToggle: false
   };
 
-
+  //sets the state of heart toggle true and dispatch an action that goes to saga
   toggleHeart = (favRecipeId) => {
-    
     if (!this.state.heartToggle) {
       this.setState({
         heartToggle: true
       });
-      this.props.dispatch({ type: 'POST_FAV_RECIPE', payload: {recipe_id: favRecipeId} })
+      this.props.dispatch({ type: 'POST_FAV_RECIPE', payload: { recipe_id: favRecipeId } })
     } else {
       this.setState({
         heartToggle: false
       });
     }
-    
+
   };
 
-  // outputs version of heart icon to DOM based on current state of 'heartToggle'
+  //if hearttoggle is true changes the color on DOM
   displayHeart = () => {
     if (this.state.heartToggle) {
       return <FavoriteIcon style={{ color: "#d50000" }} />;
@@ -75,7 +74,7 @@ class RecipeItems extends Component {
       return <FavoriteIcon />;
     }
   };
-
+  //clicked on expandclick true expands the card on DOM
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
@@ -87,11 +86,11 @@ class RecipeItems extends Component {
         <Card className={classes.card}>
           <CardHeader
             avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-                R
-          </Avatar>
+              <Avatar aria-label="Recipe" className={classes.avatar} >
+                Z
+            </Avatar>
             }
-            
+
             title={this.props.items.recipe_title}
 
           />
@@ -119,7 +118,7 @@ class RecipeItems extends Component {
           <CardActions disableSpacing>
             <IconButton
               aria-label="Add to favorites"
-              onClick={() =>this.toggleHeart(this.props.items.id)}
+              onClick={() => this.toggleHeart(this.props.items.id)}
             >
               {this.displayHeart()}
             </IconButton>
@@ -139,9 +138,9 @@ class RecipeItems extends Component {
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
 
-            <Typography paragraph>Makes:{this.props.items.makes}</Typography>
-            <Typography paragraph>Serves:{this.props.items.serves}</Typography>
-            <Typography paragraph>Cook Time:{this.props.items.cooktime}</Typography>
+              <Typography paragraph>Makes:{this.props.items.makes}</Typography>
+              <Typography paragraph>Serves:{this.props.items.serves}</Typography>
+              <Typography paragraph>Cook Time:{this.props.items.cooktime}</Typography>
               <Typography paragraph>Ingredients:</Typography>
               <Typography paragraph>
                 {this.props.items.ingredients}

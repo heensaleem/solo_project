@@ -17,7 +17,7 @@ import FavouritesPage from '../FavouritesPage/FavouritesPage';
 import UserPage from '../UserPage/UserPage';
 import AddRecipesPage from '../AddRecipePage/AddRecipesPage';
 import ReviewRecipe from '../AddRecipePage/ReviewRecipe';
-import favouritesPage from '../FavouritesPage/FavouritesPage';
+//import favouritesPage from '../FavouritesPage/FavouritesPage';
 import editRecipesPage from '../FavouritesPage/EditRecipes';
 import profilePage from '../ProfilePage/profile';
 
@@ -39,11 +39,11 @@ class App extends Component {
             <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
-            <Route
+             <Route
               exact
               path="/favourites"
               component={FavouritesPage}
-            />
+            /> 
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -65,11 +65,11 @@ class App extends Component {
               path="/review"
               component={ReviewRecipe}
             />
-            <ProtectedRoute
+            {/* <ProtectedRoute
               exact
               path="/favourites"
               component={favouritesPage}
-            />
+            /> */}
             <ProtectedRoute
               exact
               path="/edit"

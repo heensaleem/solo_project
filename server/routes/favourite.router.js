@@ -6,9 +6,13 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 // return all favorite recipes by the user
 router.get('/',rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT "recipe".id, "recipe".category, "recipe".cooktime, "recipe".description, "recipe".image_url, recipe.ingredients, recipe.makes, recipe.preparation, recipe.recipe_title, recipe.serves FROM "recipe"
-    JOIN "favourites" ON "favourites".recipe_id = "recipe".id 
-    WHERE "recipe".user_id = $1`;
+  console.log('user id from get fav', req.user.id)
+    const queryText = `SELECT "recipe".id, "recipe".category, 
+    "recipe".cooktime, "recipe".description, "recipe".image_url, 
+    recipe.ingredients, recipe.makes, recipe.preparation, 
+    recipe.recipe_title, recipe.serves FROM "recipe"
+    JOIN "favourites" ON "favourites".recipe_id = "recipe".id
+    WHERE "favourites".user_id = $1`;
     pool.query(queryText, [req.user.id])
     .then(result => {res.send(result.rows)})
     .catch(error => {
@@ -24,7 +28,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('in post  fav recipe', req.user)
     let queryText = 
     `INSERT INTO "favourites" ("user_id", "recipe_id")
-    VALUES ($1, $2)`; 
+    SELECT $1,$2
+WHERE NOT EXISTS (
+    SELECT * from "favourites"
+    WHERE(
+        "user_id" = $1
+        AND
+        "recipe_id" = $2
+    )
+)`; 
      pool.query(queryText, [req.user.id, req.body.recipe_id] )
      .then( () => {
          res.sendStatus(201); 
