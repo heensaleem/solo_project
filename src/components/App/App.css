@@ -10,17 +10,19 @@ body {
 }
 
    form {
-     background-color: white; 
+     background-color: floralwhite; 
     width: 80%;
-    height: 250px;
+    height: 300px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
+   text-align: center;
 }    
 
 input {
     margin: 5px;
     margin-bottom: 10px;
+    
 }
 
 .log-in, .log-out, .register {

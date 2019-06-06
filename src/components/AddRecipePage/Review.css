@@ -1,7 +1,12 @@
 .image {
-    position: absolute;
+    /* position: absolute;
     top: 150px;
-    right: 100px;
+    right: 100px; */
+    float:right;
+    position:relative;
+    top:-300px;
+    padding-left: 20px;
+   
     
   }
 
