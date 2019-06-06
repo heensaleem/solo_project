@@ -3,13 +3,20 @@ import {connect} from 'react-redux';
 
 
 class viewRecipe extends Component {
+   
   render() {
     return (
       <div>
-          <p>View Page</p>
+          <pre>{JSON.stringify(this.props.recipeItem)}</pre>
       </div>
     );
   }
 }
 
-export default connect()(viewRecipe);
+const mapStateToProps = state => ({
+    //user: state.user,
+    recipeItem: state.recipeViewReducer,
+   
+  });
+
+export default connect(mapStateToProps)(viewRecipe);

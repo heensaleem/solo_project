@@ -29,7 +29,7 @@ class RecipeList extends Component {
   }
   // determines which message will display on snackbar depending if post to database was successful
   alertMessage = () => {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     if (this.props.confirmPost.status) {
       return (
         <span id="message-id" style={{ display: "flex", alignItems: "center" }}>

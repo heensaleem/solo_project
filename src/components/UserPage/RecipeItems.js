@@ -11,7 +11,6 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Grid from '@material-ui/core/Grid';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
@@ -81,7 +80,8 @@ class RecipeItems extends Component {
   //clicked on handle Click to view the recipe
   handleClick = (id) => {
    console.log('id from the handle click view recipe', id);
-   this.props.history.push(`/viewpage/${id}`);
+   this.props.dispatch({ type: 'FETCH_VIEW_RECIPE', payload:id });
+   this.props.history.push(`/viewrecipe/${id}`);
   }
 
   render() {

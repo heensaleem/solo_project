@@ -6,7 +6,8 @@ import recipeReducer from './recipeReducer';
 import addRecipeReducer from './addRecipeReducer';
 import favRecipeReducer from './favRecipeReducer';
 import editFavReducer from './EditFavReducer';
-import conformPostReducer from './conformPostReducer'
+import conformPostReducer from './conformPostReducer';
+import recipeViewReducer from './recipeViewreducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   favRecipeReducer,
   editFavReducer,
   conformPostReducer,
+  recipeViewReducer,
 });
 
 export default rootReducer;

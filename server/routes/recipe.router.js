@@ -35,10 +35,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  });
 
  //get the specific recipe from the database for that image click on DOM
-router.get('/viewpage/:id', rejectUnauthenticated, (req, res) => {
+router.get('/viewpage/:id',  (req, res) => {
     let viewPageId = req.params.id;
     console.log('viewPageId', viewPageId);
-    console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
     let queryText = `SELECT * FROM "recipe" WHERE id=$1`;
     pool.query(queryText, [req.params.id]).then((result) => {

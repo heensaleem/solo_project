@@ -78,6 +78,16 @@ function* updateFavRecipeSaga(action) {
     }
 } 
 
+function* fetchViewRecipeSaga(action) {
+    try {
+        
+        const response = yield axios.get(`api/recipe/viewpage/${action.payload}`);
+        console.log('fetch view recipe saga', response.data);
+        yield put({ type: 'SET_VIEW_RECIPES', payload: response.data });
+    } catch (error) {
+        console.log('user items get recipe request failed', error);
+    }
+}
 
 
 function* recipeSaga() {
@@ -87,6 +97,7 @@ function* recipeSaga() {
     yield takeLatest('GET_FAV_RECIPES', fetchFavRecipesaga);
     yield takeLatest('REMOVE_FAV_RECIPE', removeFavRecipeSaga);
     yield takeLatest('UPDATE_RECIPES', updateFavRecipeSaga);
+    yield takeLatest('FETCH_VIEW_RECIPE', fetchViewRecipeSaga);
 }
 
 
