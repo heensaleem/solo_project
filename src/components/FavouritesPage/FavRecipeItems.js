@@ -17,12 +17,23 @@ import Collapse from '@material-ui/core/Collapse';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {Edit}from '@material-ui/icons';
 import { withRouter } from "react-router-dom";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
 
 
 const styles = (theme) => {
   return {
     card: {
       maxWidth: 500,
+    },
+    button: {
+      margin: 0,
+      width: 120,
+      float: "right"
     },
     media: {
       height: 0,
@@ -36,7 +47,16 @@ const styles = (theme) => {
         duration: theme.transitions.duration.shortest
       })
     },
-    
+    root: {
+      width: "100%",
+      marginTop: theme.spacing.unit * 8,
+      overflowX: "auto"
+    },
+    iconHover: {
+      "&:hover": {
+        color: theme.palette.primary.main
+      }
+    },
     avatar: {
       backgroundColor: "#33ab9f"
     }
@@ -49,20 +69,77 @@ class favRecipeItems extends Component {
         removeItem: false,
         updateFavourites: false,
       };
-    //if remove button is clicked, dispatches an action to remove that specific recipe
-      removeRecipe = (favRecipeId) => {
-        if (!this.state.removeItem) {
-          this.setState({
-            removeItem: true
-          });
-          this.props.dispatch({ type: 'REMOVE_FAV_RECIPE', payload: {recipe_id: favRecipeId} })
-        } else {
-          this.setState({
-            removeItem: false
-          });
-        }
+
+      // Handle delete button click action to delete the selected project from table
+  handleDeleteClick = id => () => {
+    console.log("delete click for id", id);
+    this.setState({
+      open: true,
+      selectedId: id
+    });
+  };
+// shows confirmation message before deleting the project from database
+deleteDialog = () => {
+  return (
+    <Dialog
+      open={this.state.open}
+      onClose={this.handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">{"Please Confirm"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Are you sure you want to Remove this Recipe from Favourites?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          onClick={this.handleDeleteConfirm("disagree")}
+          color="primary"
+        >
+          Disagree
+        </Button>
+        <Button
+          onClick={this.handleDeleteConfirm("agree")}
+          color="primary"
+          autoFocus
+        >
+          Agree
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+handleDeleteConfirm = confirmation => () => {
+  if (confirmation === "agree") {
+    console.log("clicked agree");
+    this.props.dispatch({
+      type: "REMOVE_FAV_RECIPE",
+      payload: {recipe_id: this.state.selectedId }
+    });
+  }
+  this.setState({
+    open: false,
+    selectedId: ""
+  });
+};
+
+    // //if remove button is clicked, dispatches an action to remove that specific recipe
+    //   removeRecipe = (favRecipeId) => {
+    //     if (!this.state.removeItem) {
+    //       this.setState({
+    //         removeItem: true
+    //       });
+    //       this.props.dispatch({ type: 'REMOVE_FAV_RECIPE', payload: {recipe_id: favRecipeId} })
+    //     } else {
+    //       this.setState({
+    //         removeItem: false
+    //       });
+    //     }
         
-      }; 
+    //   }; 
 // if user clicks on edit button set the state to true and dispatch the info to the reducer
       editFavourites = (items) => {
         console.log('clicked on edit button',items );
@@ -112,6 +189,7 @@ class favRecipeItems extends Component {
       render() {
         const { classes } = this.props;
         return (
+          <>
           <Grid item xs={12} sm={4} >
             <Card className={this.props.classes.card}>
               <CardHeader
@@ -153,11 +231,12 @@ class favRecipeItems extends Component {
                   {this.displayHeart()}
                 </IconButton>
                 <IconButton
-                  aria-label="Remove from Favourites"
-                  onClick={() =>this.removeRecipe(this.props.items.id)}
-                >
-                  {this.removeIcon()}
-                </IconButton>
+                      className={classes.iconHover}
+                      onClick={this.handleDeleteClick(this.props.items.id)}
+                      aria-label="Delete"
+                    >
+                      <DeleteIcon />
+                      </IconButton>
                 <IconButton
                   aria-label="Edit favourites"
                   onClick={() =>this.editFavourites(this.props.items)}
@@ -194,6 +273,9 @@ class favRecipeItems extends Component {
               </Collapse>
             </Card>
             </Grid>
+            
+              {this.deleteDialog()}
+            </>
         );
       }
     }

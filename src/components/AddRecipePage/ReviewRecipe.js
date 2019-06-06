@@ -105,7 +105,7 @@ class reviewRecipe extends Component {
 const mapStateToProps = state => ({
   //user: state.user,
   recipeItem: state.addRecipeReducer,
-  
+  confirmPost: state.conformPostReducer
 });
 
 export default withRouter(withStyles(styles)(connect(mapStateToProps)(reviewRecipe)));

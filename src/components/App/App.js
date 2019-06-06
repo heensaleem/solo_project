@@ -17,11 +17,25 @@ import FavouritesPage from '../FavouritesPage/FavouritesPage';
 import UserPage from '../UserPage/UserPage';
 import AddRecipesPage from '../AddRecipePage/AddRecipesPage';
 import ReviewRecipe from '../AddRecipePage/ReviewRecipe';
-//import favouritesPage from '../FavouritesPage/FavouritesPage';
+import viewRecipe from '../UserPage/ViewRecipe';
 import editRecipesPage from '../FavouritesPage/EditRecipes';
 import profilePage from '../ProfilePage/profile';
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import './App.css';
+
+
+// initalize the material UI theme to be used and define the primary color of the theme
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#008183",
+      main: "#008183",
+      dark: "#008183",
+      contrastText: "#fff"
+    }
+  }  
+});
 
 
 class App extends Component {
@@ -32,6 +46,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <MuiThemeProvider theme={theme}>
         <div>
           <Nav />
           <Switch>
@@ -65,11 +80,11 @@ class App extends Component {
               path="/review"
               component={ReviewRecipe}
             />
-            {/* <ProtectedRoute
+             <ProtectedRoute
               exact
-              path="/favourites"
-              component={favouritesPage}
-            /> */}
+              path="/viewrecipe"
+              component={viewRecipe}
+            /> 
             <ProtectedRoute
               exact
               path="/edit"
@@ -85,6 +100,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
+        </MuiThemeProvider>
       </Router>
   )}
 }

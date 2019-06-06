@@ -34,7 +34,7 @@ class RecipeList extends Component {
       return (
         <span id="message-id" style={{ display: "flex", alignItems: "center" }}>
           <CheckCircleIcon className={this.props.classes.icon} />
-          recipe add was successful!
+          Recipe Added and sent an Email!
         </span>
       );
     } else {
@@ -69,13 +69,14 @@ class RecipeList extends Component {
               horizontal: "center"
             }}
             open={this.props.confirmPost.open}
-            autoHideDuration={6000}
+            autoHideDuration={3000}
             onClose={this.handleClose}
             ContentProps={{
               "aria-describedby": "message-id"
             }}
             message={this.alertMessage()}
           />
+          
       </div>
     )
   }
