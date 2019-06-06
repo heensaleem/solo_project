@@ -82,7 +82,7 @@ class App extends Component {
             />
              <ProtectedRoute
               exact
-              path="/viewrecipe"
+              path="/viewrecipe/:id"
               component={viewRecipe}
             /> 
             <ProtectedRoute

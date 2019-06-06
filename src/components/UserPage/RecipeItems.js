@@ -15,6 +15,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
+import { withRouter } from "react-router-dom";
 
 
 // defines the cards theme and styles
@@ -77,12 +78,17 @@ class RecipeItems extends Component {
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
+  //clicked on handle Click to view the recipe
+  handleClick = (id) => {
+   console.log('id from the handle click view recipe', id);
+   this.props.history.push(`/viewpage/${id}`);
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <Grid item xs={12} sm={4}>
-        <Card className={classes.card}>
+        <Card className={classes.card} >
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar} >
@@ -96,6 +102,7 @@ class RecipeItems extends Component {
               className={classes.media}
               image={this.props.items.image_url}
               title="image dish name"
+              onClick={() => this.handleClick(this.props.items.id)}
             />
           </div>
           <CardContent
@@ -160,4 +167,4 @@ const mapStateToProps = state => ({
 });
 
 // this allows us to use <App /> in index.js
-export default withStyles(styles)(connect(mapStateToProps)(RecipeItems));
+export default withRouter(withStyles(styles)(connect(mapStateToProps)(RecipeItems)));
