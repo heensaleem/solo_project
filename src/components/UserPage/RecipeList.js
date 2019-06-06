@@ -19,9 +19,7 @@ const styles = theme => ({
     marginRight: "auto"
   },
   
-  
 });
-
 
 class RecipeList extends Component {
   componentDidMount() {

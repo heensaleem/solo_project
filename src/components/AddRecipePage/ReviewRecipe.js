@@ -7,6 +7,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withStyles } from '@material-ui/core/styles';
+import './Review.css';
 
 //styles by material UI
 const styles = (theme) => {
@@ -15,9 +16,8 @@ const styles = (theme) => {
       width: 200
     },
     button: {
-      margin: 0,
-      width: 120,
-      float: "right"
+      margin: theme.spacing(2),
+      float: "center"
     },
     icon: {
       fontSize: 20,
@@ -52,9 +52,9 @@ class reviewRecipe extends Component {
       //if is complete true show submit button otherwise button disabled
       (this.isComplete()) ?
         // Call this.handleSubmit not right away
-        <Button onClick={() => this.handleSubmit()} variant="contained" color="primary">submit</Button>
+        <Button onClick={() => this.handleSubmit()} variant="contained" color="primary" className={this.props.classes.button}>submit</Button>
         :
-        <Button variant="contained" disabled >
+        <Button variant="contained" className={this.props.classes.button} disabled >
           Incomplete
            </Button>
     )
@@ -100,25 +100,25 @@ class reviewRecipe extends Component {
 
   render() {
     return (
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        justify="center"
-        alignItems="flex-start">
+      // <Grid
+      //   container
+      //   spacing={2}
+      //   direction="row"
+      //   justify="center"
+      //   alignItems="flex-start">
         <div>
           <h2>Review Your Recipe</h2>
 
-          <form>
-            <p>Recipe Title : {this.props.recipeItem.recipe_title}</p>
-            <p>Category : {this.props.recipeItem.category}</p>
-            <p>Description : {this.props.recipeItem.description}</p>
-            <p>Makes : {this.props.recipeItem.makes}</p>
-            <p>Serves : {this.props.recipeItem.serves}</p>
-            <p>cook Time : {this.props.recipeItem.cooktime}</p>
-            <p>Image URL : {this.props.recipeItem.image_url}</p>
-            <p>Ingredients : {this.props.recipeItem.ingredients}</p>
-            <p>Preparation Instructions : {this.props.recipeItem.preparation}</p>
+          <form >
+            <p ><b>Recipe Title :</b> {this.props.recipeItem.recipe_title}</p>
+            <p><b>Category : </b>{this.props.recipeItem.category}</p>
+            <p><b>Description : </b>{this.props.recipeItem.description}</p>
+            <p><b>Makes : </b>{this.props.recipeItem.makes}</p>
+            <p><b>Serves :</b> {this.props.recipeItem.serves}</p>
+            <p><b>cook Time : </b>{this.props.recipeItem.cooktime}</p>
+            <p className="image"><b> Image  : </b><img src={this.props.recipeItem.image_url}  width="200" height="200"/></p>
+            <p><b>Ingredients : </b>{this.props.recipeItem.ingredients}</p>
+            <p><b>Preparation Instructions :</b> {this.props.recipeItem.preparation}</p>
             <Button onClick={() => this.handlePrevious()} variant="contained" color="primary">Previous</Button>
             {/* conditional rendering for the button to show up only when all the form is filled */}
             {this.conditionalButton()}
@@ -138,7 +138,7 @@ class reviewRecipe extends Component {
             message={this.alertMessage()}
           />
         </div>
-      </Grid>
+      //</Grid>
 
     )
   }

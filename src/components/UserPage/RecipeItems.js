@@ -27,7 +27,6 @@ const styles = theme => ({
     paddingTop: "67.25%" // 16:9,
   },
 
-
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -90,9 +89,7 @@ class RecipeItems extends Component {
                 Z
             </Avatar>
             }
-
             title={this.props.items.recipe_title}
-
           />
           <div className="card-image">
             <CardMedia

@@ -63,7 +63,6 @@ WHERE NOT EXISTS (
 // update given favorite with a id
 router.put('/:id', (req, res) => {
     console.log('req.params.id: ' + req.params.id + ' req.user.id: ' + req.user.id);
-    
     const sqlText = `
     UPDATE recipe
     SET  category = $2, cooktime = $3, description = $4, image_url = $5, ingredients = $6, makes= $7, preparation = $8, recipe_title = $9, serves  = $10
