@@ -9,7 +9,6 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Typography } from "@material-ui/core";
 import MenuItem from '@material-ui/core/MenuItem';
 
-
 const styles = theme => ({
   textField: {
     marginTop: 2,
@@ -99,8 +98,8 @@ class AddRecipesForm extends Component {
                 />
               </Grid>
               <Grid item xs={3} >
-                <TextValidator 
-                select
+                <TextValidator
+                  select
                   id="category"
                   label="* Category"
                   fullWidth
@@ -113,17 +112,17 @@ class AddRecipesForm extends Component {
                   validators={["required"]}
                   errorMessages={["this field is required"]}
                   variant="outlined">
-                    <MenuItem value="Appetizers and Snacks">Appetizers and Snacks</MenuItem>
-                    <MenuItem value="Breakfast and Brunch">Breakfast and Brunch</MenuItem>
-                    <MenuItem value="Baby and Toddler Recipes">Baby and Toddler Recipes</MenuItem>
-                    <MenuItem value="Dinner Recipes">Dinner Recipes</MenuItem>
-                    <MenuItem value="Lunch Recipes">Lunch recipes</MenuItem>
-                    <MenuItem value="Desserts">Desserts</MenuItem>
-                    <MenuItem value="Drinks">Drinks</MenuItem>
-                    <MenuItem value="Cake">Cake</MenuItem>
-                    <MenuItem value="cookie And Biscuit">cookie And Biscuit</MenuItem>
-                    <MenuItem value="other">other</MenuItem>
-                  </TextValidator>
+                  <MenuItem value="Appetizers and Snacks">Appetizers and Snacks</MenuItem>
+                  <MenuItem value="Breakfast and Brunch">Breakfast and Brunch</MenuItem>
+                  <MenuItem value="Baby and Toddler Recipes">Baby and Toddler Recipes</MenuItem>
+                  <MenuItem value="Dinner Recipes">Dinner Recipes</MenuItem>
+                  <MenuItem value="Lunch Recipes">Lunch recipes</MenuItem>
+                  <MenuItem value="Desserts">Desserts</MenuItem>
+                  <MenuItem value="Drinks">Drinks</MenuItem>
+                  <MenuItem value="Cake">Cake</MenuItem>
+                  <MenuItem value="cookie And Biscuit">cookie And Biscuit</MenuItem>
+                  <MenuItem value="other">other</MenuItem>
+                </TextValidator>
               </Grid>
               <Grid item xs={6} >
                 <TextValidator
