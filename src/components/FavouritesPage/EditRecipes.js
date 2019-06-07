@@ -65,7 +65,7 @@ class editRecipes extends Component {
         const { classes } = this.props;
         return (
             <>
-              <pre>{JSON.stringify(this.props.recipeItems)}</pre> 
+              {/* <pre>{JSON.stringify(this.props.recipeItems)}</pre>  */}
              <div>
              <Typography variant="h4" gutterBottom>
          EDIT RECIPE

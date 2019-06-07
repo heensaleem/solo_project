@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 
 
 import { withStyles } from '@material-ui/core/styles';
@@ -45,7 +46,9 @@ class reviewRecipe extends Component {
       //if is complete true show submit button otherwise button disabled
       (this.isComplete()) ?
         // Call this.handleSubmit not right away
+        <Grid item xs={12} >
         <Button onClick={() => this.handleSubmit()} variant="contained" color="primary" className={this.props.classes.button}>submit</Button>
+        </Grid>
         :
         <Button variant="contained" className={this.props.classes.button} disabled >
           Incomplete
@@ -78,21 +81,23 @@ class reviewRecipe extends Component {
         <div>
           <h2>Review Your Recipe</h2>
 
-          <form >
+          <div className="view" >
             <p ><b>Recipe Title :</b> {this.props.recipeItem.recipe_title}</p>
             <p><b>Category : </b>{this.props.recipeItem.category}</p>
             <p><b>Description : </b>{this.props.recipeItem.description}</p>
             <p><b>Makes : </b>{this.props.recipeItem.makes}</p>
             <p><b>Serves :</b> {this.props.recipeItem.serves}</p>
             <p><b>cook Time : </b>{this.props.recipeItem.cooktime}</p>
-            <p className="image"><b> Image  : </b><img src={this.props.recipeItem.image_url}  width="200" height="200"/></p>
+            <p className="image"><b> Image  : </b><br /><img src={this.props.recipeItem.image_url}  width="200" height="200"/></p>
             <p><b>Ingredients : </b>{this.props.recipeItem.ingredients}</p>
             <p><b>Preparation Instructions :</b> {this.props.recipeItem.preparation}</p>
             <Button onClick={() => this.handlePrevious()} variant="contained" color="primary">Previous</Button>
             {/* conditional rendering for the button to show up only when all the form is filled */}
+            
             {this.conditionalButton()}
+            
             {/* <button type="submit" >SUBMIT</button> */}
-          </form>
+          </div>
           
         </div>
       //</Grid>

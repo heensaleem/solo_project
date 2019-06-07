@@ -12,7 +12,7 @@ body {
    form {
      background-color: floralwhite; 
     width: 80%;
-    height: 500px;
+    height: 600px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
@@ -23,6 +23,15 @@ input {
     margin: 5px;
     margin-bottom: 10px;
     
+}
+.view{
+  background-color: floralwhite; 
+    width: 80%;
+    height: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 2px;
+  
 }
 
 .log-in, .log-out, .register {
@@ -50,4 +59,24 @@ input {
     border-bottom:1px solid #444; 
     cursor: pointer;
   
+}
+
+.image {
+  /* position: absolute;
+  top: 150px;
+  right: 100px; */
+  float:right;
+  position:relative;
+  top:-250px;
+  padding-left: 20px;
+ 
+  
+}
+
+h2{
+  text-align: center
+}
+
+.button{
+  text-align: center;
 }

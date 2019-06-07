@@ -7,7 +7,8 @@ class profilePage extends Component {
   render() {
     return (
       <>
-          <p>Profile Page</p>
+          <h2>MY ACCOUNT</h2>
+         
       </>
     );
   }

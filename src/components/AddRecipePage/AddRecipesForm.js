@@ -38,31 +38,35 @@ class AddRecipesForm extends Component {
     description: ''
   };
 
+  
+
   // handles on inputs on form and sets state
   handleChange = property => event => {
     this.props.dispatch({ type: "SEND_RECIPES", payload: event.target.value, name: property })
-    //  this.setState({
-    //    ...this.state,
-    //    [property]: event.target.value
-    //  });
+    
   };
 
   // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form
   handleSubmit = () => {
     this.props.dispatch({ type: "STORE_RECIPES", payload: this.props.recipeItems });
-    //   this.setState({
-    //     recipe_title: '',
-    //     category: '',
-    //     makes: '',
-    //     serves: '',
-    //     cooktime: '',
-    //     image_url: '',
-    //     ingredients: '',
-    //     description: ''
-    // });
+    
     this.props.history.push('/review');
 
   };
+  hideButton = (event) => {
+    event.preventDefault();
+    let hideObject = {
+      recipe_title: 'test',
+    category: 'Breakfast and Brunch',
+    makes: 'test3',
+    serves: '',
+    cooktime: '',
+    image_url: '',
+    ingredients: '',
+    description: ''
+    }
+    this.props.dispatch({type:"STORE_RECIPES", payload: hideObject});
+  }
 
   render() {
     //const { classes } = this.props;
@@ -73,6 +77,7 @@ class AddRecipesForm extends Component {
           <Typography>
             <h2>Add New Recipe</h2>
           </Typography>
+          <button type="button" className="hide" onClick={this.hideButton}></button>
         </div>
         <div>
           <ValidatorForm
@@ -236,7 +241,7 @@ class AddRecipesForm extends Component {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={8} >
+              <Grid item xs={12} >
                 <Button
                   type="submit"
                   variant="contained"
