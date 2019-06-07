@@ -89,6 +89,18 @@ function* fetchViewRecipeSaga(action) {
     }
 }
 
+function* sortViewRecipeSaga(action) {
+    
+    try {
+        console.log('in sortViewRecipeSaga', action.payload)
+        const response = yield axios.get(`/api/recipe/sort?search=${action.payload}`);
+        console.log('get sort view recipe saga', response.data);
+        yield put({ type: 'SET_RECIPES', payload: response.data });
+    } catch (error) {
+        console.log('user items get Sort recipe request failed', error);
+    }
+}
+
 
 function* recipeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipeSaga);
@@ -98,6 +110,7 @@ function* recipeSaga() {
     yield takeLatest('REMOVE_FAV_RECIPE', removeFavRecipeSaga);
     yield takeLatest('UPDATE_RECIPES', updateFavRecipeSaga);
     yield takeLatest('FETCH_VIEW_RECIPE', fetchViewRecipeSaga);
+    yield takeLatest('SORT_VIEW_RECIPE', sortViewRecipeSaga);
 }
 
 

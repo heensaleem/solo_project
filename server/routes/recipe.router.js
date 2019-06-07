@@ -49,11 +49,11 @@ router.get('/viewpage/:id',  (req, res) => {
 });
 
 router.get('/sort',  (req, res) => {
-    let viewPageId = req.params.id;
-    
+   console.log('from get sort the view page', req.query)
+    console.log('from get sort', `${req.query.search}`);
     let queryText = `SELECT * FROM "recipe"
-    WHERE "recipe".category::text ILIKE '%din%'`;
-    pool.query(queryText, [req.params.id]).then((result) => {
+    WHERE "recipe".category::text ILIKE $1`;
+    pool.query(queryText, [req.query.search]).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log(error);
