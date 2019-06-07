@@ -91,16 +91,18 @@ class reviewRecipe extends Component {
             <p className="image"><b> Image  : </b><br /><img src={this.props.recipeItem.image_url}  width="200" height="200"/></p>
             <p><b>Ingredients : </b>{this.props.recipeItem.ingredients}</p>
             <p><b>Preparation Instructions :</b> {this.props.recipeItem.preparation}</p>
-            <Button onClick={() => this.handlePrevious()} variant="contained" color="primary">Previous</Button>
+            
+          </div>
+          <div className="button">
+          <Button onClick={() => this.handlePrevious()} variant="contained" color="primary">Previous</Button>
             {/* conditional rendering for the button to show up only when all the form is filled */}
             
             {this.conditionalButton()}
             
             {/* <button type="submit" >SUBMIT</button> */}
-          </div>
-          
+            </div> 
         </div>
-      //</Grid>
+      
 
     )
   }

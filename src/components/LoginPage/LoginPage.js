@@ -86,6 +86,7 @@ class LoginPage extends Component {
       <TextField
         id="password"
         label="Password"
+        type="password"
         //className={classNames(classes.textField)}
         value={this.state.password}
         onChange={this.handleInputChangeFor('password')}

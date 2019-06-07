@@ -47,6 +47,19 @@ router.get('/viewpage/:id',  (req, res) => {
         res.sendStatus(500);
     });
 });
+
+router.get('/sort',  (req, res) => {
+    let viewPageId = req.params.id;
+    
+    let queryText = `SELECT * FROM "recipe"
+    WHERE "recipe".category::text ILIKE '%din%'`;
+    pool.query(queryText, [req.params.id]).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
  
 
 module.exports = router;
