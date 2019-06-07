@@ -1,5 +1,27 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+
+//styles by material UI
+const styles = (theme) => {
+  return {
+    root: {
+      flexGrow: 1,
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
+    button: {
+      margin: theme.spacing(1),
+    },
+    
+  }
+};
 
 class RegisterPage extends Component {
   state = {
@@ -36,7 +58,9 @@ class RegisterPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
+      <div className={classes.root}>
       <div>
         {this.props.errors.registrationMessage && (
           <h2
@@ -48,61 +72,64 @@ class RegisterPage extends Component {
         )}
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="firstname">
-              First Name:
-              <input
-                type="text"
-                name="firstname"
-                value={this.state.firstname}
-                onChange={this.handleInputChangeFor('firstname')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="lastname">
-              Last Name:
-              <input
-                type="text"
-                name="lastname"
-                value={this.state.lastname}
-                onChange={this.handleInputChangeFor('lastname')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="email_id">
-              Email :
-              <input
-                type="text"
-                name="email_id"
-                value={this.state.email_id}
-                onChange={this.handleInputChangeFor('email_id')}
-              />
-            </label>
-          </div>
+          
+          <Grid item xs={12}>
+              <TextField
+        id="User_name"
+        label="User Name"
+        //className={classNames(classes.textField)}
+        value={this.state.username}
+        onChange={this.handleInputChangeFor('username')}
+        margin="normal"
+        variant="outlined"
+      />
+      </Grid>
+      <Grid item xs={12}>
+      <TextField
+        id="password"
+        label="Password"
+        //className={classNames(classes.textField)}
+        value={this.state.password}
+        onChange={this.handleInputChangeFor('password')}
+        margin="normal"
+        variant="outlined"
+      />
+        </Grid>
+          
+          <Grid item xs={12}>
+      <TextField
+        id="firstname"
+        label="First Name"
+        //className={classNames(classes.textField)}
+        value={this.state.firstname}
+        onChange={this.handleInputChangeFor('firstname')}
+        margin="normal"
+        variant="outlined"
+      />
+        </Grid>
+          
+          <Grid item xs={12}>
+      <TextField
+        id="lastname"
+        label="Last Name"
+        //className={classNames(classes.textField)}
+        value={this.state.lastname}
+        onChange={this.handleInputChangeFor('lastname')}
+        margin="normal"
+        variant="outlined"
+      />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+        id="emailid"
+        label="Email ID"
+        //className={classNames(classes.textField)}
+        value={this.state.email_id}
+        onChange={this.handleInputChangeFor('email_id')}
+        margin="normal"
+        variant="outlined"
+      />
+      </Grid>
           <div>
             <input
               className="register"
@@ -111,16 +138,19 @@ class RegisterPage extends Component {
               value="Register"
             />
           </div>
-        </form>
+
+        
         <center>
-          <button
+          <Button
             type="button"
             className="link-button"
             onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
           >
             Login
-          </button>
+          </Button>
         </center>
+        </form>
+      </div>
       </div>
     );
   }
@@ -133,5 +163,5 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+export default withStyles(styles)(connect(mapStateToProps)(RegisterPage));
 

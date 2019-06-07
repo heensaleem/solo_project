@@ -104,7 +104,7 @@ class LoginPage extends Component {
             
           </div>
           
-        </form>
+        
         <center>
           <Button
             type="button"
@@ -114,6 +114,7 @@ class LoginPage extends Component {
             Register
           </Button>
         </center>
+        </form>
       </div>
       
       </div>
