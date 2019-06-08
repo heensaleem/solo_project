@@ -54,7 +54,7 @@ class userPage extends Component {
 
 
       <div class="Searchcontainer">
-        <img className="imageclass" src="Images/fresh.jpg" alt="Cinque Terre" width="1500" height="200" />
+        <img className="imageclass" src="Images/img2.jpeg" alt="Cinque Terre" width="1300" height="200" />
         <div class="centersearch">
         <Grid container spacing={2}>
         <Grid item xs={12} >
@@ -73,8 +73,7 @@ class userPage extends Component {
             <MenuItem value="Appetizers and Snacks">Appetizers and Snacks</MenuItem>
             <MenuItem value="Breakfast and Brunch">Breakfast and Brunch</MenuItem>
             <MenuItem value="Baby and Toddler Recipes">Baby and Toddler Recipes</MenuItem>
-            <MenuItem value="Dinner Recipes">Dinner Recipes</MenuItem>
-            <MenuItem value="Lunch Recipes">Lunch recipes</MenuItem>
+            <MenuItem value="Lunch And Dinner">Lunch and Dinner</MenuItem>
             <MenuItem value="Desserts">Desserts</MenuItem>
             <MenuItem value="Drinks">Drinks</MenuItem>
             <MenuItem value="Cake">Cake</MenuItem>
@@ -91,7 +90,7 @@ class userPage extends Component {
               onClick={this.handleSubmit}
             //className={classes.button}
             >
-              SEARCH
+              FILTER
        </Button>
           </Grid>
           <Grid item xs={6} >

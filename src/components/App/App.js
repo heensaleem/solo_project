@@ -33,6 +33,19 @@ const theme = createMuiTheme({
       main: "#008183",
       dark: "#008183",
       contrastText: "#fff"
+    },
+    typography: {
+      // Use the system font instead of the default Roboto font.
+      fontFamily: [
+        "-apple-system",
+        "Comfortaa",
+        '"Segoe UI"',
+        "Roboto",
+        '"Helvetica Neue"',
+        "Arial",
+        "sans-serif"
+      ].join(","),
+      fontSize: "12"
     }
   }  
 });

@@ -88,6 +88,7 @@ class RegisterPage extends Component {
       <TextField
         id="password"
         label="Password"
+        type="password"
         //className={classNames(classes.textField)}
         value={this.state.password}
         onChange={this.handleInputChangeFor('password')}
@@ -122,7 +123,7 @@ class RegisterPage extends Component {
         <Grid item xs={12}>
           <TextField
         id="emailid"
-        label="Email ID"
+        label="Email"
         //className={classNames(classes.textField)}
         value={this.state.email_id}
         onChange={this.handleInputChangeFor('email_id')}
