@@ -106,10 +106,17 @@ class RecipeItems extends Component {
             />
           </div>
           <CardContent
-            style={{ marginTop: "3px", marginBottom: "3px" }}
+            style={{ marginTop: "1px", marginBottom: "1px" }}
           >
             <Typography component="p">
               {this.props.items.category}
+            </Typography>
+          </CardContent>
+          <CardContent
+            style={{ marginTop: "1px", marginBottom: "1px" }}
+          >
+            <Typography component="p">
+              Recipy By: {this.props.items.username}
             </Typography>
           </CardContent>
           <CardContent

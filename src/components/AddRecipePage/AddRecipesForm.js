@@ -132,6 +132,22 @@ class AddRecipesForm extends Component {
                   <MenuItem value="other">other</MenuItem>
                 </TextValidator>
               </Grid>
+              <Grid item xs={3} >
+              <TextValidator
+                  id="name"
+                  label="* User Name"
+                  fullWidth
+                  //className={classNames(classes.textField)}
+                  onChange={this.handleChange("username")}
+                  name="username"
+                  type="text"
+                  margin="normal"
+                  value={this.props.recipeItems.username}
+                  validators={["required"]}
+                  errorMessages={["this field is required"]}
+                  variant="outlined"
+                />
+              </Grid>
               <Grid item xs={6} >
                 <TextValidator
                   id="outlined-multiline-flexible"

@@ -1,6 +1,7 @@
  let recipe = {
    recipe_title: '',
         category: '',
+        username: '',
         makes: '',
         serves: '',
         cooktime: '',

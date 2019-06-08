@@ -4,14 +4,24 @@ import {connect} from 'react-redux';
 
 
 class profilePage extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER_INFO' });
+  }
   render() {
     return (
       <>
-          <h2>MY ACCOUNT</h2>
-         
+          <pre>{JSON.stringify(this.props.user)}</pre>
+         <p>profile page</p>
       </>
     );
   }
 }
 
-export default connect()(profilePage);
+const mapStateToProps = state => ({
+  //user: state.user,
+  user: state.userinfoReducer,
+  
+});
+
+
+export default connect(mapStateToProps)(profilePage);
