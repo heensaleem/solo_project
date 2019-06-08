@@ -101,6 +101,17 @@ function* sortViewRecipeSaga(action) {
     }
 }
 
+// send axios DELETE request to server and re-fetch all items from 'projects' table on database
+function* deleteRecipeSaga(action) {
+    try { 
+        console.log('delete profile page from sagas',action.payload)
+        yield axios.delete(`/api/recipe/${action.payload}`)
+        yield put({type: 'FETCH_RECIPES'})
+    }
+    catch(error) {
+    console.log(error)
+  }
+  }
 
 function* recipeSaga() {
     yield takeLatest('FETCH_RECIPES', fetchRecipeSaga);
@@ -111,6 +122,7 @@ function* recipeSaga() {
     yield takeLatest('UPDATE_RECIPES', updateFavRecipeSaga);
     yield takeLatest('FETCH_VIEW_RECIPE', fetchViewRecipeSaga);
     yield takeLatest('SORT_VIEW_RECIPE', sortViewRecipeSaga);
+    yield takeLatest('DELETE_RECIPE', deleteRecipeSaga);
 }
 
 
