@@ -21,6 +21,7 @@ import { withRouter } from "react-router-dom";
 const styles = theme => ({
   card: {
     maxWidth: 400,
+    backgroundColor: "#f1f8e9"
   },
   media: {
     height: 0,

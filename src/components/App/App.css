@@ -2,6 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     
+    
 }
 
 .alert {
@@ -34,6 +35,9 @@ input {
     padding: 25px;
     border-radius: 2px;
   
+}
+.profileForm{
+  height:350px;
 }
 
 .log-in, .log-out, .register {

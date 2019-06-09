@@ -69,7 +69,7 @@ class RecipeList extends Component {
               horizontal: "center"
             }}
             open={this.props.confirmPost.open}
-            autoHideDuration={3000}
+            autoHideDuration={6000}
             onClose={this.handleClose}
             ContentProps={{
               "aria-describedby": "message-id"

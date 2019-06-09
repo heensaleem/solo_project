@@ -33,7 +33,8 @@ const styles = theme => ({
   root: {
     width: "100%",
     marginTop: theme.spacing.unit * 8,
-    overflowX: "auto"
+    overflowX: "auto",
+    backgroundColor:"#f1f8e9"
   },
   iconHover: {
     "&:hover": {
@@ -135,7 +136,7 @@ class profilePage extends Component {
             {(this.props.user.length) ?
               <div>
 
-                <form >
+                <form className="profileForm" >
                   <Grid item xs={12}  >
                     <TextField
                       id="standard-name"

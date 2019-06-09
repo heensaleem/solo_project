@@ -29,6 +29,7 @@ const styles = (theme) => {
   return {
     card: {
       maxWidth: 500,
+      backgroundColor:"#f1f8e9"
     },
     button: {
       margin: 0,

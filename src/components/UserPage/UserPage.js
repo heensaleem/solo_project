@@ -52,68 +52,70 @@ class userPage extends Component {
     console.log('state of category', this.state);
     return (
 
+      <>
+      <div className="center">
+      <Grid container
+            spacing={1}
+            direction="row"
+            justify="center"
+            alignItems="flex-start">
+      <Grid item xs={12} >
+                <TextField
+                  select
+                  id="category"
+                  label="* Category"
+                  fullWidth
+                  //className={classNames(classes.textField)}
+                  onChange={this.handleChange}
+                  name="category"
+                  type="text"
+                  margin="normal"
+                   value={this.state.category}
 
-      <div class="Searchcontainer">
-        {/* <img className="imageclass" src="Images/img2.jpeg" alt="Cinque Terre" width="1300" height="200" /> */}
-        
-        <Grid container spacing={2}>
-        <Grid item xs={12} sm={3} >
-          <TextField
-            select
-            id="category"
-            label="* Category"
-           fullWidth
-            //className={classNames(classes.textField)}
-            onChange={this.handleChange}
-            name="category"
-            type="text"
-            margin="normal"
-            value={this.state.category}
-            variant="outlined">
-            <MenuItem value="Appetizers and Snacks">Appetizers and Snacks</MenuItem>
-            <MenuItem value="Breakfast and Brunch">Breakfast and Brunch</MenuItem>
-            <MenuItem value="Baby and Toddler Recipes">Baby and Toddler Recipes</MenuItem>
-            <MenuItem value="Lunch And Dinner">Lunch and Dinner</MenuItem>
-            <MenuItem value="Desserts">Desserts</MenuItem>
-            <MenuItem value="Drinks">Drinks</MenuItem>
-            <MenuItem value="Cake">Cake</MenuItem>
-            <MenuItem value="cookie And Biscuit">cookie And Biscuit</MenuItem>
-            <MenuItem value="other">other</MenuItem>
-          </TextField>
-          </Grid>
+                  variant="outlined">
+                   <MenuItem value="Appetizers and Snacks">Appetizers and Snacks</MenuItem>
+                  <MenuItem value="Breakfast and Brunch">Breakfast and Brunch</MenuItem>
+                  <MenuItem value="Baby and Toddler Recipes">Baby and Toddler Recipes</MenuItem>
+                  <MenuItem value="Dinner Recipes">Dinner Recipes</MenuItem>
+                  <MenuItem value="Lunch Recipes">Lunch recipes</MenuItem>
+                  <MenuItem value="Desserts">Desserts</MenuItem>
+                  <MenuItem value="Drinks">Drinks</MenuItem>
+                  <MenuItem value="Cake">Cake</MenuItem>
+                  <MenuItem value="cookie And Biscuit">cookie And Biscuit</MenuItem>
+                  <MenuItem value="other">other</MenuItem> 
+                </TextField>
+              </Grid>
+              
+              <Grid item xs={12} sm={6} >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  
+                  onClick={this.handleSubmit}
+                //className={classes.button}
+                >
+                  SEARCH
+              </Button>
+              </Grid>
+              <Grid item xs={12} sm={6} >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  
+                  onClick={this.handleClear}
+                //className={classes.button}
+                >
+                  CLEAR
+              </Button>
+              </Grid>
+              </Grid>
+             
+              </div>
+          <RecipeList />
           
-          <Grid container spacing={2} justify="center">
-        <Grid item xs={12} >
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="small"
-              onClick={this.handleSubmit}
-            //className={classes.button}
-            >
-              FILTER
-       </Button>
-       </Grid>
-       <Grid  xs={12} >
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-             size="small"
-              onClick={this.handleClear}
-            //className={classes.button}
-            >
-              CLEAR
-        </Button>
-        </Grid>
-        </Grid>
-        </Grid>
-        <RecipeList />
-        
-      </div>
-    
-       
+      </>
     );
   }
 }
