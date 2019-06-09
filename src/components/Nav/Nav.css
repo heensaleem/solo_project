@@ -4,6 +4,7 @@
     display: inline-block;
     color: #f2f2f2;
     padding-left: 10px;
+    
 }
 
 .nav {
@@ -25,6 +26,17 @@
   border:none;
   cursor: pointer;
   outline:0;
+}
+.my-logo img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 50px;
+  opacity: 1;
+}
+.my-logo{
+  height: 80px;
+  
+  
 }
 
 .nav-link:hover {

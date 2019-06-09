@@ -70,7 +70,7 @@ class viewRecipe extends Component {
               :
               <div>empty</div>
             }
-           <Grid item xs={12}  >
+           <Grid item xs={6}  >
             <Button className="button" onClick={() => this.handleClick()} variant="contained" color="primary">BACK</Button>
             </Grid>
           </div>

@@ -67,8 +67,8 @@ class editRecipes extends Component {
             <>
               {/* <pre>{JSON.stringify(this.props.recipeItems)}</pre>  */}
              <div>
-             <Typography variant="h4" gutterBottom>
-         EDIT RECIPE
+             <Typography variant="h6" gutterBottom>
+             <h2>Edit Recipe</h2>
       </Typography>
              </div>
         <div>

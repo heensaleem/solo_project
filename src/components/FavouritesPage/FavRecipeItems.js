@@ -213,7 +213,7 @@ handleDeleteConfirm = confirmation => () => {
                 style={{ marginTop: "3px", marginBottom: "3px" }}
               >
                 <Typography component="p">
-                  {this.props.items.category}
+                 <b>{this.props.items.category}</b> 
                 </Typography>
               </CardContent>
               <CardContent

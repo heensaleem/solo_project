@@ -54,15 +54,15 @@ class userPage extends Component {
 
 
       <div class="Searchcontainer">
-        <img className="imageclass" src="Images/img2.jpeg" alt="Cinque Terre" width="1300" height="200" />
-        <div class="centersearch">
+        {/* <img className="imageclass" src="Images/img2.jpeg" alt="Cinque Terre" width="1300" height="200" /> */}
+        
         <Grid container spacing={2}>
-        <Grid item xs={12} >
+        <Grid item xs={12} sm={3} >
           <TextField
             select
             id="category"
             label="* Category"
-            fullWidth
+           fullWidth
             //className={classNames(classes.textField)}
             onChange={this.handleChange}
             name="category"
@@ -81,33 +81,36 @@ class userPage extends Component {
             <MenuItem value="other">other</MenuItem>
           </TextField>
           </Grid>
-          <Grid item xs={6} >
+          
+          <Grid container spacing={2} justify="center">
+        <Grid item xs={12} >
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              size="large"
+              size="small"
               onClick={this.handleSubmit}
             //className={classes.button}
             >
               FILTER
        </Button>
-          </Grid>
-          <Grid item xs={6} >
+       </Grid>
+       <Grid  xs={12} >
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              size="large"
+             size="small"
               onClick={this.handleClear}
             //className={classes.button}
             >
               CLEAR
         </Button>
-          </Grid>
-          </Grid>
-        </div>
+        </Grid>
+        </Grid>
+        </Grid>
         <RecipeList />
+        
       </div>
     
        

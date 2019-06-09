@@ -6,9 +6,16 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
+    <div className="my-logo">
+            <img
+              src="/Images/logo.jpeg"
+              //src="/images/github1.png"
+              alt="my logo"
+            />
     <Link to="/home">
       <h2 className="nav-title">ZAIKA RECIPES</h2>
     </Link>
+    
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
@@ -35,6 +42,7 @@ const Nav = (props) => (
        {/* <Link className="nav-link" to="/about">
         About
       </Link>   */}
+    </div>
     </div>
   </div>
 );
