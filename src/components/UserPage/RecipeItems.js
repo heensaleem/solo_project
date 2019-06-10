@@ -78,6 +78,7 @@ class RecipeItems extends Component {
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
+  
   //clicked on handle Click to view the recipe
   handleClick = (id) => {
    console.log('id from the handle click view recipe', id);

@@ -186,6 +186,13 @@ handleDeleteConfirm = confirmation => () => {
       handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
       };
+
+      //clicked on handle Click to view the recipe
+  handleClick = (id) => {
+    console.log('id from the handle click view recipe', id);
+    this.props.dispatch({ type: 'FETCH_VIEW_RECIPE', payload:id });
+    this.props.history.push(`/viewrecipe/${id}`);
+   }
     
       render() {
         const { classes } = this.props;
@@ -208,6 +215,7 @@ handleDeleteConfirm = confirmation => () => {
                   className={this.props.classes.media}
                   image={this.props.items.image_url}
                   title="image dish name"
+                  onClick={() => this.handleClick(this.props.items.id)}
                 />
               </div>
               <CardContent
