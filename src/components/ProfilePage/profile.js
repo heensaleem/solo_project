@@ -184,7 +184,7 @@ class profilePage extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <CustomTableCell>Project Name</CustomTableCell>
+                  <CustomTableCell>MY RECIPES</CustomTableCell>
                   <CustomTableCell align="right" />
 
                   {/* <CustomTableCell align="right">Fat (g)</CustomTableCell>

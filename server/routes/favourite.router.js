@@ -66,9 +66,9 @@ router.put('/:id', (req, res) => {
     const sqlText = `
     UPDATE recipe
     SET  category = $2, cooktime = $3, description = $4, image_url = $5, ingredients = $6, makes= $7, preparation = $8, recipe_title = $9, serves  = $10
-    WHERE id=$1 AND user_id = $11;
+    WHERE id=$1 ;
     `
-    pool.query(sqlText, [req.params.id, req.body.category, req.body.cooktime, req.body.description, req.body.image_url, req.body.ingredients, req.body.makes, req.body.preparation, req.body.recipe_title, req.body.serves, req.user.id] )
+    pool.query(sqlText, [req.params.id, req.body.category, req.body.cooktime, req.body.description, req.body.image_url, req.body.ingredients, req.body.makes, req.body.preparation, req.body.recipe_title, req.body.serves] )
       .then((result) => {
         console.log('PUT route', result);
         

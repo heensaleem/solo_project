@@ -27,7 +27,7 @@ const Nav = (props) => (
       {props.user.id && (
         <>
         <Link className="nav-link" to="/profile">
-        My Profile
+        My Account
       </Link>
           <Link className="nav-link" to="/addrecipe">
             Add Recipe
