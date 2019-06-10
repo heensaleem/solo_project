@@ -14,6 +14,17 @@ function* fetchRecipeSaga() {
         console.log('user items get recipe request failed', error);
     }
 }
+function* fetchProfileSaga() {
+    try {
+       
+        const response = yield axios.get('api/recipe/profile');
+
+        yield put({ type: 'SET_PROFILE_RECIPES', payload: response.data });
+    } catch (error) {
+        console.log('user items get  profile recipe request failed', error);
+    }
+}
+
 
 function* postRecipeSaga(action) {
     try {
@@ -107,6 +118,7 @@ function* deleteRecipeSaga(action) {
         console.log('delete profile page from sagas',action.payload)
         yield axios.delete(`/api/recipe/${action.payload}`)
         yield put({type: 'FETCH_RECIPES'})
+        yield put({type: 'FETCH_PROFILE_RECIPES'})
     }
     catch(error) {
     console.log(error)
@@ -123,6 +135,7 @@ function* recipeSaga() {
     yield takeLatest('FETCH_VIEW_RECIPE', fetchViewRecipeSaga);
     yield takeLatest('SORT_VIEW_RECIPE', sortViewRecipeSaga);
     yield takeLatest('DELETE_RECIPE', deleteRecipeSaga);
+    yield takeLatest('FETCH_PROFILE_RECIPES', fetchProfileSaga);
 }
 
 

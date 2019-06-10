@@ -68,7 +68,7 @@ class profilePage extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER_INFO' });
-    this.props.dispatch({ type: 'FETCH_RECIPES' });
+    this.props.dispatch({ type: 'FETCH_PROFILE_RECIPES' });
   }
     // Handle delete button click action to delete the selected project from table
    handleDeleteClick = id => () => {
@@ -227,7 +227,7 @@ class profilePage extends Component {
   const mapStateToProps = state => ({
     //user: state.user,
     user: state.userinfoReducer,
-    recipeItems: state.recipeReducer
+    recipeItems: state.profileRecipeReducer
 
   });
 

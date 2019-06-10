@@ -71,7 +71,7 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <h1>Register Here</h1>
           
           <Grid item xs={12}>
               <TextField

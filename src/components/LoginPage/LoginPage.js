@@ -66,10 +66,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login} >
-        <Typography variant="h2" component="h2" gutterBottom>
-        LogIn
-      </Typography>
-      
+        
       <Grid item xs={12}>
               <TextField
         id="User_name"

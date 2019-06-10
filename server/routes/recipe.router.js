@@ -17,6 +17,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+//get all the recipes from the database for that specific user
+router.get('/profile', rejectUnauthenticated, (req, res) => {
+    console.log('/ GET route');
+    console.log('is authenticated?', req.isAuthenticated());
+    console.log('user', req.user);
+    let queryText = `SELECT * FROM "recipe" WHERE "recipe".user_id=$1;`;
+    pool.query(queryText, [req.user.id]).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
+
 
 //post the recipe to the database
 router.post('/', rejectUnauthenticated, (req, res) => {
