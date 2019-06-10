@@ -46,6 +46,10 @@ class userPage extends Component {
   }
   handleClear = () => {
     this.props.dispatch({ type: "FETCH_RECIPES" })
+    this.setState({
+        category: ''
+     
+    })
   }
 
   render() {
@@ -76,8 +80,7 @@ class userPage extends Component {
                    <MenuItem value="Appetizers and Snacks">Appetizers and Snacks</MenuItem>
                   <MenuItem value="Breakfast and Brunch">Breakfast and Brunch</MenuItem>
                   <MenuItem value="Baby and Toddler Recipes">Baby and Toddler Recipes</MenuItem>
-                  <MenuItem value="Dinner Recipes">Dinner Recipes</MenuItem>
-                  <MenuItem value="Lunch Recipes">Lunch recipes</MenuItem>
+                  <MenuItem value="Lunch and Dinner">Lunch and Dinner</MenuItem>
                   <MenuItem value="Desserts">Desserts</MenuItem>
                   <MenuItem value="Drinks">Drinks</MenuItem>
                   <MenuItem value="Cake">Cake</MenuItem>
@@ -95,7 +98,7 @@ class userPage extends Component {
                   onClick={this.handleSubmit}
                 //className={classes.button}
                 >
-                  SEARCH
+                  FILTER
               </Button>
               </Grid>
               <Grid item xs={12} sm={6} >
