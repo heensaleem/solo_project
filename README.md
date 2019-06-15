@@ -24,20 +24,21 @@ These instructions will get you a copy of the project up and running on your loc
 - In the terminal, npm run server and npm run client
 
 ## Screen Shot
-
+<img width="1274" alt="Screen Shot 2019-06-14 at 10 40 22 PM" src="https://user-images.githubusercontent.com/47267211/59546579-a6ea1080-8ef5-11e9-9d4f-83ca2361fc01.png">
 
 
 ## Documentation
 # Completed Features
 - App allows users to
 
- - Create an account and sign in.
- - View all recipes in the home page created by the users.
- - Add Recipes page to add a recipe.
- - Able to review the recipe once added.
- - once added sends an email to all the users.
- - Favourites Page that shows all the favourites recipes of that logged in user.
- - Profile Page shows all the recipes that are added by that user.
+ - Create an account and sign in
+ - View all recipes in the home page created by the users
+ - Able to filter through category and search for the recipe
+ - Add Recipes page to add a recipe
+ - Able to review the recipe once added
+ - once added sends an email to all the users
+ - Favourites Page that shows all the favourites recipes of that logged in user
+ - Profile Page shows all the recipes that are added by that user
  
 ## Next Steps
  - Allow user to add comments and reviews.
