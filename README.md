@@ -13,10 +13,10 @@ These instructions will get you a copy of the project up and running on your loc
 - PostgresQL
 - Postico
 
-# Installing
+## Installing
 - Steps to get the development environment running.
 
-# Download this project.
+### Download this project.
 - Set up a local PostgreSQL database called prime_app
 - Use the data.sql instructions to create a table in your database
 - Set up a local .env file with the following fields, replacing values with your own: a. SERVER_SESSION_SECRET=(32-character string including symbols) b. email_user=(gmail account to send messages from) 
@@ -28,7 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ## Documentation
-# Completed Features
+### Completed Features
 - App allows users to
 
  - Create an account and sign in
