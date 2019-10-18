@@ -48,7 +48,6 @@ These instructions will get you a copy of the project up and running on your loc
 ## Authors
 Heena Kouser
 
-## Acknowledgments
-Prime Digital Academy
+
     
 
